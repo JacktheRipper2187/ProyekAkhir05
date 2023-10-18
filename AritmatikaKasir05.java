@@ -13,7 +13,7 @@ public class AritmatikaKasir05 {
         jmlBeli=input.nextInt();
         System.out.print("Masukkan Harga: ");
         harga=input.nextInt();
-        System.out.print("Masukkan jumlah diskon");
+        System.out.print("Masukkan jumlah diskon: ");
         diskon=input.nextDouble();
         
         total=harga*jmlBeli;
