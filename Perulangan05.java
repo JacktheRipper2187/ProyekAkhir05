@@ -1,22 +1,18 @@
 import java.util.Scanner;
-public class tugasp7 { 
+public class Perulangan05 { 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Daftar makanan dan harganya dalam array
         String[] daftarMakanan = {"Nasi Goreng", "Mie Ayam", "Bakso", "Sate Ayam"};
         double[] hargaMakanan = {10.0, 8.0, 7.0, 12.0};
 
-        // Menampilkan menu
         System.out.println("Menu Makanan:");
         for (int i = 0; i < daftarMakanan.length; i++) {
             System.out.println((i + 1) + ". " + daftarMakanan[i] + " - Rp " + hargaMakanan[i]);
         }
 
-        // Inisialisasi variabel total harga
         double totalHarga = 0.0;
 
-        // Memesan makanan
         System.out.println("\nPesan makanan (masukkan nomor makanan atau 0 untuk selesai):");
         int nomorMakanan;
         do {
@@ -28,7 +24,6 @@ public class tugasp7 {
             }
         } while (nomorMakanan != 0);
 
-        // Menampilkan total harga
         System.out.println("Total Harga: Rp " + totalHarga);
 
         System.out.println("Terima kasih! Selamat menikmati makanan Anda.");
