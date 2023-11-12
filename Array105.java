@@ -14,6 +14,36 @@ public class Array105{
         menu[3] = "Sate Ayam";
         menu[4] = "Es Teh";
 
+        // menambah data harga
+        harga[0] = 10000;
+        harga[1] = 15000;
+        harga[2] = 10000;
+        harga[3] = 12000;
+        harga[4] = 5000;
+
+        System.out.println("Daftar Menu");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println(menu[i] + " - Rp." + harga[i]);
+        }
+
+        System.out.print("Masukkan menu yang dibeli: ");
+        String inputMenu = sc.nextLine(); 
         
+        int indexMenu = -1;
+        for (int i = 0; i < menu.length; i++) {
+            if (menu[i].equalsIgnoreCase(inputMenu)) {
+                indexMenu = i;
+                break;
+            }
+        }
+
+        System.out.print("jumlah yang dibeli: ");
+        int jmlMenu = sc.nextInt();
+
+        if (indexMenu != -1) {
+            System.out.println("Harga " + inputMenu + " adalah Rp. " + harga[indexMenu]);
+        } else {
+            System.out.println("Daftar menu tidak ditemukan");
+        }
     }
 }
