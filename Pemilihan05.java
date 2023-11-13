@@ -3,15 +3,19 @@ import java.util.Scanner;
 public class Pemilihan05 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+
+        int pilihan, jumlahPesanan, totalHarga, harga;
+        double totalBayar, diskon;
+        
         System.out.println("Menu Restoran");
         System.out.println("1. Nasi Goreng - Rp 25000");
         System.out.println("2. Mie Goreng - Rp 20000");
         System.out.println("3. Ayam Bakar - Rp 35000");
 
         System.out.print("Pilih menu (1-3): ");
-        int pilihan = input.nextInt();
+        pilihan = input.nextInt();
 
-        int harga = 0;
+        harga = 0;
 
         if (pilihan == 1) {
             harga = 25000;
@@ -24,12 +28,12 @@ public class Pemilihan05 {
         }
 
         System.out.print("Jumlah pesanan: ");
-        int jumlahPesanan = input.nextInt();
+        jumlahPesanan = input.nextInt();
 
-        int totalHarga = harga * jumlahPesanan;
+        totalHarga = harga * jumlahPesanan;
 
         // Pemilihan 1: Diskon berdasarkan total harga
-        double diskon = 0;
+        diskon = 0;
         if (totalHarga >= 50000) {
             diskon = 0.1 * totalHarga;
         }
@@ -39,7 +43,7 @@ public class Pemilihan05 {
             diskon += 0.05 * totalHarga;
         }
 
-        double totalBayar = totalHarga - diskon;
+        totalBayar = totalHarga - diskon;
 
         System.out.println("Detail Pesanan:");
         System.out.println("Menu: " + pilihan);
