@@ -3,39 +3,48 @@ import java.util.Scanner;
 public class Pemilihan05 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        System.out.println("Menu Restoran");
+        System.out.println("1. Nasi Goreng - Rp 25000");
+        System.out.println("2. Mie Goreng - Rp 20000");
+        System.out.println("3. Ayam Bakar - Rp 35000");
 
-        double totalHarga = 0;
-        double diskon = 0;
+        System.out.print("Pilih menu (1-3): ");
+        int pilihan = input.nextInt();
 
-        System.out.print("Masukkan jumlah item yang akan dibeli: ");
-        int jumlahItem = input.nextInt();
-        input.nextLine();
+        int harga = 0;
 
-        for (int i = 1; i <= jumlahItem; i++) {
-            System.out.println("Item " + i + ":");
-            System.out.print("Masukkan nama barang: ");
-            String namaBarang = input.nextLine();
-            System.out.print("Masukkan harga item: Rp ");
-            double harga = input.nextDouble();
-            input.nextLine();
-
-            if (harga > 0) {
-                totalHarga += harga;
-            } else {
-                System.out.println("Harga item tidak valid. Harga item harus lebih dari 0.");
-                i--;
-            }
+        if (pilihan == 1) {
+            harga = 25000;
+        } else if (pilihan == 2) {
+            harga = 20000;
+        } else if (pilihan == 3) {
+            harga = 35000;
+        } else {
+            System.out.println("Menu tidak ditemukan.");
         }
 
-        if (totalHarga >= 500000) {
-            diskon = 0.2 * totalHarga;
-        } else if (totalHarga >= 100000) {
-            diskon = 0.05 * totalHarga;
+        System.out.print("Jumlah pesanan: ");
+        int jumlahPesanan = input.nextInt();
+
+        int totalHarga = harga * jumlahPesanan;
+
+        // Pemilihan 1: Diskon berdasarkan total harga
+        double diskon = 0;
+        if (totalHarga >= 50000) {
+            diskon = 0.1 * totalHarga;
+        }
+
+        // Pemilihan 2: Diskon tambahan untuk pembelian lebih dari 3 item
+        if (jumlahPesanan > 3) {
+            diskon += 0.05 * totalHarga;
         }
 
         double totalBayar = totalHarga - diskon;
 
-        System.out.println("Total Belanja: Rp " + totalHarga);
+        System.out.println("Detail Pesanan:");
+        System.out.println("Menu: " + pilihan);
+        System.out.println("Jumlah Pesanan: " + jumlahPesanan);
+        System.out.println("Total Harga: Rp " + totalHarga);
         System.out.println("Diskon: Rp " + diskon);
         System.out.println("Total Bayar: Rp " + totalBayar);
     }
