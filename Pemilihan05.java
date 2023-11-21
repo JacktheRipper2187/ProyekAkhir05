@@ -25,7 +25,7 @@ public class Pemilihan05 {
             harga = 35000;
         } else {
             System.out.println("Menu tidak ditemukan.");
-        }
+        } 
 
         System.out.print("Jumlah pesanan: ");
         jumlahPesanan = input.nextInt();
