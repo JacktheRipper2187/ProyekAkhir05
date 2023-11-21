@@ -25,7 +25,8 @@ public class Pemilihan05 {
             harga = 35000;
         } else {
             System.out.println("Menu tidak ditemukan.");
-        } 
+            return; // Menghentikan program jika pengguna memasukkan input yang salah
+        }
 
         System.out.print("Jumlah pesanan: ");
         jumlahPesanan = input.nextInt();
