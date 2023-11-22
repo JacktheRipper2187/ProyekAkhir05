@@ -22,5 +22,6 @@ public class AritmatikaKasir05 {
         
         System.out.println("Diskon yang anda dapatkan adalah " + jmlDis);
         System.out.println("Jumlah yang harus anda bayar " + bayar);
+        
     }
 }
