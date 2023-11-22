@@ -4,7 +4,7 @@ public class Perulangann05 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] daftarMakanan = {"Nasi Goreng", "Mie Ayam", "Bakso", "Sate Ayam"};
-        double[] hargaMakanan = {10.0, 8.0, 7.0, 12.0};
+        int[] hargaMakanan = {10000, 8000, 7000, 12000};
 
         System.out.println("Menu Makanan:");
         for (int i = 0; i < daftarMakanan.length; i++) {
