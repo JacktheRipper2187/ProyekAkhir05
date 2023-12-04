@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class SistemKasir05 {
@@ -6,49 +8,48 @@ public class SistemKasir05 {
         Scanner input = new Scanner(System.in);
         double totalTransaksi = 0;
 
+        // Menentukan menu makanan beserta harganya
+        Map<String, Double> menuMakanan = new HashMap<>();
+        menuMakanan.put("Nasi Goreng", 15000.0);
+        menuMakanan.put("Mie Goreng", 12000.0);
+        menuMakanan.put("Ayam Goreng", 18000.0);
+        menuMakanan.put("Sate Ayam", 20000.0);
+
         while (true) {
-            double totalBarang = 0;
-            while (true) {
-                try {
-                    System.out.print("Masukkan harga barang (0 untuk selesai): ");
-                    double hargaBarang = input.nextDouble();
-                    if (hargaBarang == 0) {
+            System.out.println("Menu Makanan:");
+            for (String makanan : menuMakanan.keySet()) {
+                System.out.println(makanan + " - Rp" + menuMakanan.get(makanan));
+            }
+            System.out.println("5. Selesai dan hitung transaksi");
+
+            int pilihan = input.nextInt();
+            input.nextLine(); // Membersihkan newline
+
+            if (pilihan >= 1 && pilihan <= 4) {
+                String namaMakanan = "";
+                double hargaMakanan = 0.0;
+
+                // Mendapatkan nama dan harga makanan sesuai pilihan
+                int index = 1;
+                for (Map.Entry<String, Double> entry : menuMakanan.entrySet()) {
+                    if (index == pilihan) {
+                        namaMakanan = entry.getKey();
+                        hargaMakanan = entry.getValue();
                         break;
                     }
-                    totalBarang += hargaBarang;
-                } catch (Exception e) {
-                    System.out.println("Masukkan angka yang valid!");
-                    input.next(); // Membersihkan input yang salah
+                    index++;
                 }
-            }
 
-            if (totalBarang == 0) {
+                System.out.println("Anda memilih: " + namaMakanan + " - Rp" + hargaMakanan);
+                totalTransaksi += hargaMakanan;
+            } else if (pilihan == 5) {
                 break;
-            }
-
-            System.out.println("Total harga barang: " + totalBarang);
-            System.out.print("Masukkan pembayaran: ");
-            double pembayaran = input.nextDouble();
-            double kembalian = pembayaran - totalBarang;
-
-            if (kembalian >= 0) {
-                totalTransaksi += totalBarang;
-                System.out.println("Kembalian: " + kembalian);
             } else {
-                System.out.println("Maaf, uang yang Anda masukkan kurang.");
+                System.out.println("Pilihan tidak valid. Silakan pilih 1-5.");
             }
         }
 
-        System.out.println("Total transaksi hari ini: " + totalTransaksi);
+        System.out.println("Total transaksi hari ini: Rp" + totalTransaksi);
         input.close();
     }
 }
-
-        // System.out.println("Masukkan Barang : ");
-        // String item = input.nextLine();
-        // System.out.println("Harga Barang : ");
-        // int harga = input.nextInt();
-        // System.out.println("Jumlah Barang : ");
-        // int kuantitas = input.nextInt();
-        // int total = harga * kuantitas;
-        // System.out.println("Total Belanja : \n" + kuantitas +" " + item + "Seharga Rp" + total);
