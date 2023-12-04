@@ -1,24 +1,7 @@
 import java.util.Scanner;
 
 public class SistemKasir05 {
-<<<<<<< HEAD
-    public static void main(String[] args){
-        
 
-
-   
-
-
-
-
-
-
-
-
-
-
-
-=======
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         double totalTransaksi = 0;
@@ -58,10 +41,8 @@ public class SistemKasir05 {
 
         System.out.println("Total transaksi hari ini: " + totalTransaksi);
         input.close();
->>>>>>> 1b1f686f8889aa028708bf2b9d07a4653c8e49e8
     }
 }
-
 
         // System.out.println("Masukkan Barang : ");
         // String item = input.nextLine();
