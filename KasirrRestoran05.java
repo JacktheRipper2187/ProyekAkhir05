@@ -27,9 +27,24 @@ public class KasirrRestoran05 {
             System.out.print("Pilih menu: ");
             pilihan = sc.nextInt();
 
+        public static void menu{
+            
+        }
             switch (pilihan) {
                 case 1:
-                    
+                    System.out.println("|================================|");
+                    System.out.println("|       PILIH MENU MAKANAN       |");
+                    System.out.println("|================================|");
+                    System.out.println("|1. Nasi Goreng     Rp 12.000    |");
+                    System.out.println("|2. Ayam Geprek     Rp 10.000    |");
+                    System.out.println("|3. Nasi Bakar      Rp 13.000    |");
+                    System.out.println("|4. Ikan Bakar      Rp 20.000    |");
+                    System.out.println("|5. Cumi Goreng     Rp.20.000    |");
+                    System.out.println("|================================|");
+                    System.out.print("Pilih makanan: ");
+                    int makanan = sc.nextInt();
+                    System.out.print("Berapa porsi: ");
+                    int jumPorsi = sc.nextInt();
                     break;
                 case 2:
 
