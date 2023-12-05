@@ -94,9 +94,9 @@ public class KasirrRestoran05 {
         System.out.println("|================================|\n");
     }
     public static void transaksi(Scanner sc) {
-        System.out.println("Pilih Makanan: ");
+        System.out.print("Pilih Makanan: ");
         int pilihanMakanan = sc.nextInt() -1 ;
-        System.out.println("Berapa porsi: ");
+        System.out.print("Berapa porsi: ");
         int jumlahPorsi = sc.nextInt();
 
       keranjangMakan[nilai]=daftarMakanan[pilihanMakanan];
