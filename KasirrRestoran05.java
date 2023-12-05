@@ -63,6 +63,8 @@ public class KasirrRestoran05 {
                     break;
                 case 5:
                     System.out.println("Terima kasih");
+                    break;
+                    
                 default:
                     System.out.println("Menu tidak tersedia!");
                     break;
