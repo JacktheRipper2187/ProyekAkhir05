@@ -1,6 +1,27 @@
 import java.util.Scanner;
 
 public class KasirrRestoran05 {
+    static int nilai=0;
+    static  String[]daftarMakanan={
+        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah",
+    };
+    static int[]hargaMakanan={
+        1500,2000,3000,4000
+    };
+    static String[]daftarMinuman={
+        "esteh","kopi"
+    };
+    static int []hargaMinuman={
+        800,900
+    };
+    static String[] keranjangMakan = new String[5];
+    static int[] keranjangPorsi = new int[5];
+    static String[]keranjangMinumana = new String[5];
+    static int[] keranjangPorsiMinuman = new int[5];
+    static int[][] porsi = new int[100][10];
+    static String[][] makan = new String[100][10];
+    static int totalHarga;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -32,7 +53,7 @@ public class KasirrRestoran05 {
                     menu(sc);
                     break;
                 case 2:
-
+                    transaksi(sc);
                     break;
                 case 3:
 
@@ -50,34 +71,41 @@ public class KasirrRestoran05 {
     }
 
     public static void menu(Scanner sc) {
-        System.out.println("|========================================|");
-        System.out.println("|               MENU MAKANAN             |");
-        System.out.println("|========================================|");
-        System.out.println("|1. Nasi Goreng             Rp 15.000    |");
-        System.out.println("|2. Nasi Bakar              Rp 13.000    |");
-        System.out.println("|3. Ayam Geprek             Rp 12.000    |");
-        System.out.println("|4. Ayam Crispy             Rp 20.000    |");
-        System.out.println("|5. Ayam Bakar              Rp 35.000    |");
-        System.out.println("|6. Spaghetti               Rp 27.500    |");
-        System.out.println("|7. Rendang Daging          Rp 40.000    |");
-        System.out.println("|8. Ricebowl                Rp 17.000    |");
-        System.out.println("|9. Udang Asam Manis        Rp 23.000    |");
-        System.out.println("|10. Cumi Goreng            Rp 20.000    |");
-        System.out.println("|========================================|");
+        System.out.println("|================================|");
+        System.out.println("|       MENU MAKANAN             |");
+        System.out.println("|================================|");
 
-        System.out.println("|========================================|");
-        System.out.println("|               MENU MINUMAN             |");
-        System.out.println("|========================================|");
-        System.out.println("|1. Es Teh                  Rp 5.000     |");
-        System.out.println("|2. Es Jeruk                Rp 6.000     |");
-        System.out.println("|3. Es Buah                 Rp 8.000     |");
-        System.out.println("|4. Jus Alpukat             Rp 10.000    |");
-        System.out.println("|5. Jus Melon               Rp 10.000    |");
-        System.out.println("|6. Jus Jambu               Rp 10.000    |");
-        System.out.println("|7. Kopi Susu               Rp 12.000    |");
-        System.out.println("|8. Soda Gembira            Rp 17.000    |");
-        System.out.println("|9. Teh Hangat              Rp 5.000     |");
-        System.out.println("|10. GoodDay                Rp 10.000    |");
-        System.out.println("|========================================|");
+        // Menampilkan daftar makanan dan harganya dari array
+        for (int i = 0; i < daftarMakanan.length; i++) {
+            System.out.printf("|%d. %-15s %-13s|\n", (i + 1), daftarMakanan[i], "Rp " + hargaMakanan[i]);
+        }
+        System.out.println("|================================|\n");
+      
+    
+
+        System.out.println("|================================|");
+        System.out.println("|       MENU MINUMAN             |");
+        System.out.println("|================================|");
+
+        // Menampilkan daftar makanan dan harganya dari array
+        for (int i = 0; i < daftarMinuman.length; i++) {
+            System.out.printf("|%d. %-15s %-13s|\n", (i + 1), daftarMinuman[i], "Rp " + hargaMinuman[i]);
+        }
+        System.out.println("|================================|\n");
+    }
+    public static void transaksi(Scanner sc) {
+        System.out.println("Pilih Makanan: ");
+        int pilihanMakanan = sc.nextInt() -1 ;
+        System.out.println("Berapa porsi: ");
+        int jumlahPorsi = sc.nextInt();
+
+      keranjangMakan[nilai]=daftarMakanan[pilihanMakanan];
+      keranjangPorsi[nilai]=jumlahPorsi;
+    totalHarga=hargaMakanan[pilihanMakanan]*keranjangPorsi[nilai];
+    System.out.println("Makanan yang di pesan: "+keranjangMakan[nilai]);
+    System.out.println("Jumlah Porsi :"+keranjangPorsi[nilai]+" porsi");
+    System.out.println("Total Harga: "+totalHarga);
+    nilai++;
+    
     }
 }
