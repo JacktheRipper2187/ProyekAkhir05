@@ -27,24 +27,9 @@ public class KasirrRestoran05 {
             System.out.print("Pilih menu: ");
             pilihan = sc.nextInt();
 
-        public static void menu{
-            
-        }
             switch (pilihan) {
                 case 1:
-                    System.out.println("|================================|");
-                    System.out.println("|       PILIH MENU MAKANAN       |");
-                    System.out.println("|================================|");
-                    System.out.println("|1. Nasi Goreng     Rp 12.000    |");
-                    System.out.println("|2. Ayam Geprek     Rp 10.000    |");
-                    System.out.println("|3. Nasi Bakar      Rp 13.000    |");
-                    System.out.println("|4. Ikan Bakar      Rp 20.000    |");
-                    System.out.println("|5. Cumi Goreng     Rp.20.000    |");
-                    System.out.println("|================================|");
-                    System.out.print("Pilih makanan: ");
-                    int makanan = sc.nextInt();
-                    System.out.print("Berapa porsi: ");
-                    int jumPorsi = sc.nextInt();
+                    menu(sc);
                     break;
                 case 2:
 
@@ -62,6 +47,37 @@ public class KasirrRestoran05 {
                     break;
             }
         } while (pilihan != 5);
+    }
 
+    public static void menu(Scanner sc) {
+        System.out.println("|========================================|");
+        System.out.println("|               MENU MAKANAN             |");
+        System.out.println("|========================================|");
+        System.out.println("|1. Nasi Goreng             Rp 15.000    |");
+        System.out.println("|2. Nasi Bakar              Rp 13.000    |");
+        System.out.println("|3. Ayam Geprek             Rp 12.000    |");
+        System.out.println("|4. Ayam Crispy             Rp 20.000    |");
+        System.out.println("|5. Ayam Bakar              Rp 35.000    |");
+        System.out.println("|6. Spaghetti               Rp 27.500    |");
+        System.out.println("|7. Rendang Daging          Rp 40.000    |");
+        System.out.println("|8. Ricebowl                Rp 17.000    |");
+        System.out.println("|9. Udang Asam Manis        Rp 23.000    |");
+        System.out.println("|10. Cumi Goreng            Rp 20.000    |");
+        System.out.println("|========================================|");
+
+        System.out.println("|========================================|");
+        System.out.println("|               MENU MINUMAN             |");
+        System.out.println("|========================================|");
+        System.out.println("|1. Es Teh                  Rp 5.000     |");
+        System.out.println("|2. Es Jeruk                Rp 6.000     |");
+        System.out.println("|3. Es Buah                 Rp 8.000     |");
+        System.out.println("|4. Jus Alpukat             Rp 10.000    |");
+        System.out.println("|5. Jus Melon               Rp 10.000    |");
+        System.out.println("|6. Jus Jambu               Rp 10.000    |");
+        System.out.println("|7. Kopi Susu               Rp 12.000    |");
+        System.out.println("|8. Soda Gembira            Rp 17.000    |");
+        System.out.println("|9. Teh Hangat              Rp 5.000     |");
+        System.out.println("|10. GoodDay                Rp 10.000    |");
+        System.out.println("|========================================|");
     }
 }
