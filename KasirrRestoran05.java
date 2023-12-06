@@ -17,13 +17,13 @@ public class KasirrRestoran05 {
     static int[] hargaMinuman = {
             8000, 10000, 8000, 10000, 10000, 8000, 10000, 10000, 10000, 6000
     };
-    static String[] keranjangMakan = new String[5];
-    static int[] keranjangPorsi = new int[5];
-    static String[] keranjangMinumanan = new String[5];
-    static int[] keranjangPorsiMinuman = new int[5];
+    static String[] keranjangMakan = new String[10];
+    static int[] keranjangPorsi = new int[10];
+    static String[] keranjangMinumanan = new String[10];
+    static int[] keranjangPorsiMinuman = new int[10];
     static int[][] porsi = new int[100][10];
     static String[][] makan = new String[100][10];
-    static int totalHarga;
+    static int totalHargaMakan,totalHargaMinum;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -115,10 +115,10 @@ public class KasirrRestoran05 {
 
         keranjangMakan[nilai] = daftarMakanan[pilihanMakanan];
         keranjangPorsi[nilai] = jumlahPorsi;
-        totalHarga = hargaMakanan[pilihanMakanan] * keranjangPorsi[nilai];
+        totalHargaMakan += hargaMakanan[pilihanMakanan] * keranjangPorsi[nilai];
         System.out.println("Makanan yang di pesan: " + keranjangMakan[nilai]);
         System.out.println("Jumlah Porsi :" + keranjangPorsi[nilai] + " porsi");
-        System.out.println("Total Harga: " + totalHarga);
+        System.out.println("Total Harga: " + totalHargaMakan);
         System.out.print("Apakah Anda ingin membeli minuman? (y/t): ");
         sc.nextLine(); // Clear the newline character
         String beliMinuman = sc.nextLine();
@@ -133,12 +133,12 @@ public class KasirrRestoran05 {
 
             keranjangMinumanan[nilai] = daftarMinuman[pilihanMinuman];
             keranjangPorsiMinuman[nilai] = jumlahPorsiMinuman;
-            totalHarga += hargaMinuman[pilihanMinuman] * keranjangPorsiMinuman[nilai];
+            totalHargaMinum += hargaMinuman[pilihanMinuman] * keranjangPorsiMinuman[nilai];
             System.out.println("Minuman yang dipesan: " + keranjangMinumanan[nilai]);
             System.out.println("Jumlah Porsi Minuman: " + keranjangPorsiMinuman[nilai] + " porsi");
-            System.out.println("Total Harga: " + totalHarga);
+            System.out.println("Total Harga: " + totalHargaMinum);
 
-            int total = totalHarga + totalHarga;
+            int total = totalHargaMakan + totalHargaMinum;
             System.out.println("Total Bayar: " + total);
         } 
         nilai++;
