@@ -16,7 +16,7 @@ public class KasirrRestoran05 {
     };
     static String[] keranjangMakan = new String[5];
     static int[] keranjangPorsi = new int[5];
-    static String[]keranjangMinumana = new String[5];
+    static String[]keranjangMinumanan = new String[5];
     static int[] keranjangPorsiMinuman = new int[5];
     static int[][] porsi = new int[100][10];
     static String[][] makan = new String[100][10];
@@ -63,8 +63,8 @@ public class KasirrRestoran05 {
                     break;
                 case 5:
                     System.out.println("Terima kasih");
+
                     break;
-                    
                 default:
                     System.out.println("Menu tidak tersedia!");
                     break;
