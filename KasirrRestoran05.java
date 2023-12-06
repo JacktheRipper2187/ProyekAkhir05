@@ -140,8 +140,9 @@ public class KasirrRestoran05 {
             System.out.println("Minuman yang dipesan: " + keranjangMinumanan[nilai]);
             System.out.println("Jumlah Porsi Minuman: " + keranjangPorsiMinuman[nilai] + " porsi");
             System.out.println("Total Harga: " + totalHarga);
+        }  else {
+            System.out.println("Total Harga: " + totalHarga);
         }
-
         nilai++;
 
     }
