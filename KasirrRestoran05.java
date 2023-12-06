@@ -1,15 +1,14 @@
 import java.util.Scanner;
 
 public class KasirrRestoran05 {
-<<<<<<< HEAD
+
     static int nilai = 0;
     static String[] daftarMakanan = {
             "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah",
-=======
-    static int nilai=0;
-    static  String[]daftarMakanan={
-        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah", "Ayam geprek"
->>>>>>> 4fefbc8cc4e1fbd4b487488e0c5bb8d8789936fb
+    };
+    static int nilai = 0;
+    static String[] daftarMakanan = {
+            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah", "Ayam geprek"
     };
     static int[] hargaMakanan = {
             1500, 2000, 3000, 4000
@@ -150,4 +149,4 @@ public class KasirrRestoran05 {
         nilai++;
 
     }
-} 
+}
