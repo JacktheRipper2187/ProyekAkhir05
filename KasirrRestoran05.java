@@ -140,7 +140,9 @@ public class KasirrRestoran05 {
 
             int total = totalHargaMakan + totalHargaMinum;
             System.out.println("Total Bayar: " + total);
-        } 
+        } else {
+            System.out.println("Total Bayar: " + totalHargaMakan);
+        }
         nilai++;
 
     }
