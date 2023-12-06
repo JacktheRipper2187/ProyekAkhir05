@@ -6,10 +6,6 @@ public class KasirrRestoran05 {
     static String[] daftarMakanan = {
             "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah",
     };
-    static int nilai = 0;
-    static String[] daftarMakanan = {
-            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah", "Ayam geprek"
-    };
     static int[] hargaMakanan = {
             1500, 2000, 3000, 4000
     };
@@ -142,10 +138,7 @@ public class KasirrRestoran05 {
 
             int total = totalHarga + totalHarga;
             System.out.println("Total Bayar: " + total);
-        } else {
-
-        }
-
+        } 
         nilai++;
 
     }
