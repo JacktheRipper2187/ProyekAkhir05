@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class KasirrRestoran05 {
+
     static int nilai = 0;
     static String[] daftarMakanan = {
             "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah", "Ayam geprek", "Bakso Daging",
@@ -118,30 +119,28 @@ public class KasirrRestoran05 {
         System.out.println("Makanan yang di pesan: " + keranjangMakan[nilai]);
         System.out.println("Jumlah Porsi :" + keranjangPorsi[nilai] + " porsi");
         System.out.println("Total Harga: " + totalHarga);
-        System.out.print("Apakah Anda ingin membeli minuman? (Y/N): ");
+        System.out.print("Apakah Anda ingin membeli minuman? (y/t): ");
         sc.nextLine(); // Clear the newline character
         String beliMinuman = sc.nextLine();
 
-        if (beliMinuman.equalsIgnoreCase("Y")) {
-            // System.out.println("Pilih Minuman:");
+        if (beliMinuman.equalsIgnoreCase("y")) {
             for (int i = 0; i < daftarMinuman.length; i++) {
-                // System.out.printf("%d. %-15s %-13s\n", (i + 1), daftarMinuman[i], "Rp " +
-                // hargaMinuman[i]);
             }
             System.out.print("Pilih Minuman: ");
             int pilihanMinuman = sc.nextInt() - 1;
-            System.out.print("Berapa porsi minuman: ");
+            System.out.print("Berapa porsi: ");
             int jumlahPorsiMinuman = sc.nextInt();
 
             keranjangMinumanan[nilai] = daftarMinuman[pilihanMinuman];
             keranjangPorsiMinuman[nilai] = jumlahPorsiMinuman;
             totalHarga += hargaMinuman[pilihanMinuman] * keranjangPorsiMinuman[nilai];
-
             System.out.println("Minuman yang dipesan: " + keranjangMinumanan[nilai]);
             System.out.println("Jumlah Porsi Minuman: " + keranjangPorsiMinuman[nilai] + " porsi");
             System.out.println("Total Harga: " + totalHarga);
-        }
 
+            int total = totalHarga + totalHarga;
+            System.out.println("Total Bayar: " + total);
+        } 
         nilai++;
 
     }
