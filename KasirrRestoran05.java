@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class KasirrRestoran05 {
     static int nilai=0;
     static  String[]daftarMakanan={
-        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah",
+        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah", "Ayam geprek"
     };
     static int[]hargaMakanan={
         1500,2000,3000,4000
