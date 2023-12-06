@@ -42,7 +42,7 @@ public class KasirrRestoran05 {
                 System.out.println("Login Berhasil");
                 loginSuccces = true;
             } else {
-                System.out.println("Ussername atau Password salah. Silahkan coba lagi. ");
+                System.out.println("Username atau Password salah. Silahkan coba lagi. ");
             }
            
         }
