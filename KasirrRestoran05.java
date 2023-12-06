@@ -143,6 +143,7 @@ public class KasirrRestoran05 {
         }  else {
             System.out.println("Total Harga: " + totalHarga);
         }
+        
         nilai++;
 
     }
