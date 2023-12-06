@@ -3,16 +3,16 @@ import java.util.Scanner;
 public class KasirrRestoran05 {
     static int nilai=0;
     static  String[]daftarMakanan={
-        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah", "Ayam geprek"
+        "Nasi Goreng","Sate Ayam","Gado-gado","Telur Bawang Merah", "Ayam geprek", "Bakso Daging", "Ayam Teriyaki", "Ayam Lada Hitam", "Chicken Bulgogi", "Kwetiau Goreng"
     };
     static int[]hargaMakanan={
-        1500,2000,3000,4000
+        35000,20000,22000,25000,28000,20000,32000,36000,28000,34000
     };
     static String[]daftarMinuman={
-        "esteh","kopi"
+        "Es Teh","Kopi","Es Jeruk","Jus Mangga","Jus Jambu","Teh Tarik","Milo","Lychee Tea","Lemon Tea","Air Mineral"
     };
     static int []hargaMinuman={
-        800,900
+        8000,10000,8000,10000,10000,8000,10000,10000,10000,6000
     };
     static String[] keranjangMakan = new String[5];
     static int[] keranjangPorsi = new int[5];
