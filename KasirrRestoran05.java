@@ -28,13 +28,23 @@ public class KasirrRestoran05 {
         System.out.println("================================");
         System.out.println("Selamat datang di Kasir Restoran");
         System.out.println("================================");
-        System.out.print("Masukkan username: ");
-        String username = sc.nextLine();
-        System.out.print("Masukkan Password: ");
-        String password = sc.nextLine();
+    
+        boolean loginSuccces = false;
 
-        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("123")) {
-            System.out.println("Login Berhasil");
+        while (!loginSuccces){
+
+            System.out.print("Masukkan username: ");
+            String username = sc.nextLine();
+            System.out.print("Masukkan Password: ");
+            String password = sc.nextLine();
+    
+            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("123")) {
+                System.out.println("Login Berhasil");
+                loginSuccces = true;
+            } else {
+                System.out.println("Ussername atau Password salah. Silahkan coba lagi. ");
+            }
+           
         }
 
         int pilihan;
