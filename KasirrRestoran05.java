@@ -76,7 +76,7 @@ public class KasirrRestoran05 {
                     tampilkanLaporanPenjualan();
                     break;
                 case 4:
-
+                    strukPembayaran();
                     break;
                 case 5:
                     System.out.println("Terima kasih");
@@ -191,4 +191,8 @@ public class KasirrRestoran05 {
         System.out.println("Total dari Semua Transaksi: Rp " + totalSemuaTransaksi);
         System.out.println("========================================");
     }    
+
+    public static void strukPembayaran() {
+
+    }
 }
