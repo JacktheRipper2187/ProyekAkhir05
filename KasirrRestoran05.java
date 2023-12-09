@@ -76,7 +76,7 @@ public class KasirrRestoran05 {
                     tampilkanLaporanPenjualan();
                     break;
                 case 4:
-
+                    strukPembayaran(sc);
                     break;
                 case 5:
                     System.out.println("Terima kasih");
@@ -189,6 +189,49 @@ public class KasirrRestoran05 {
             System.out.println(); // Pemisah antara transaksi
         }
         System.out.println("Total dari Semua Transaksi: Rp " + totalSemuaTransaksi);
+        System.out.println("========================================");
+    }
+    
+    public static void strukPembayaran(Scanner sc) {
+        System.out.println("=== Struk Pembayaran ===");
+        
+        // Menampilkan pesanan
+        for (int i = 0; i < nomorTransaksiAktual; i++) {
+            System.out.println("Transaksi ke-" + (i + 1) + ":");
+            int totalHargaTransaksi = 0;
+
+            // Menampilkan informasi pesanan
+            for (int j = 0; j < makan[i].length; j++) {
+                if (makan[i][j] != null) {
+                    System.out.println("Menu: " + makan[i][j] + ", Porsi: " + porsi[i][j] +
+                            ", Harga: Rp " + hargaItem[i][j]);
+                    totalHargaTransaksi += hargaItem[i][j];
+                }
+            }
+
+            System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
+            System.out.println(); // Pemisah antara transaksi
+        }
+
+        // Menghitung total harga dari semua transaksi
+        int totalSemuaTransaksi = 0;
+        for (int i = 0; i < nomorTransaksiAktual; i++) {
+            for (int j = 0; j < hargaItem[i].length; j++) {
+                totalSemuaTransaksi += hargaItem[i][j];
+            }
+        }
+
+        // Input jumlah uang yang dibayarkan
+        System.out.print("Masukkan jumlah uang yang dibayarkan: ");
+        int uangDibayarkan = sc.nextInt();
+
+        // Menghitung kembalian
+        int kembalian = uangDibayarkan - totalSemuaTransaksi;
+
+        // Menampilkan struk pembayaran
+        System.out.println("Total dari Semua Transaksi: Rp " + totalSemuaTransaksi);
+        System.out.println("Uang yang dibayarkan: Rp " + uangDibayarkan);
+        System.out.println("Kembalian: Rp " + kembalian);
         System.out.println("========================================");
     }    
 }
