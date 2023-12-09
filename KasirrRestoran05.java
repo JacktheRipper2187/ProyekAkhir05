@@ -166,8 +166,11 @@ public class KasirrRestoran05 {
 
     public static void tampilkanLaporanPenjualan() {
         System.out.println("=== Laporan Penjualan ===");
+        int totalSemuaTransaksi = 0;
     
         for (int i = 0; i < totalTransaksi; i++) {
+            int totalHargaTransaksi = 0;
+
             System.out.println("Transaksi ke-" + (i + 1) + ":");
     
             // Tampilkan informasi pesanan
@@ -175,13 +178,17 @@ public class KasirrRestoran05 {
                 if (makan[i][j] != null) {
                     System.out.println("Menu: " + makan[i][j] + ", Porsi: " + porsi[i][j] +
                             ", Harga: Rp " + hargaItem[i][j]);
+                    totalHargaTransaksi += hargaItem[i][j];
+
                 }
             }
     
             // Tampilkan total harga transaksi
-            System.out.println("Total Harga Transaksi: Rp " + (totalHargaMakan + totalHargaMinum));
+            System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
+            totalSemuaTransaksi += totalHargaTransaksi;
             System.out.println(); // Pemisah antara transaksi
         }
-    }
-    
- }
+        System.out.println("Total dari Semua Transaksi: Rp " + totalSemuaTransaksi);
+        System.out.println("========================================");
+    }    
+}
