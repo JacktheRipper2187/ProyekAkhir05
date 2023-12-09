@@ -23,7 +23,11 @@ public class KasirrRestoran05 {
     static int[] keranjangPorsiMinuman = new int[10];
     static int[][] porsi = new int[100][10];
     static String[][] makan = new String[100][10];
+    static int[][] hargaItem = new int [100][10];
     static int totalHargaMakan,totalHargaMinum;
+    static int totalTransaksi = 0; // Untuk menghitung total transaksi yang sudah dilakukan
+    static int nomorTransaksiAktual = 0; // Untuk menghitung nomor transaksi yang sedang berlangsung
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -69,7 +73,7 @@ public class KasirrRestoran05 {
                     transaksi(sc);
                     break;
                 case 3:
-
+                    tampilkanLaporanPenjualan();
                     break;
                 case 4:
 
@@ -116,6 +120,8 @@ public class KasirrRestoran05 {
         keranjangMakan[nilai] = daftarMakanan[pilihanMakanan];
         keranjangPorsi[nilai] = jumlahPorsi;
         totalHargaMakan += hargaMakanan[pilihanMakanan] * keranjangPorsi[nilai];
+        hargaItem[nomorTransaksiAktual][nilai] = totalHargaMakan;
+
         System.out.println("Makanan yang di pesan: " + keranjangMakan[nilai]);
         System.out.println("Jumlah Porsi :" + keranjangPorsi[nilai] + " porsi");
         System.out.println("Total Harga: " + totalHargaMakan);
@@ -143,7 +149,39 @@ public class KasirrRestoran05 {
         } else {
             System.out.println("Total Bayar: " + totalHargaMakan);
         }
+        makan[nomorTransaksiAktual][nilai] = keranjangMakan[nilai];
+        porsi[nomorTransaksiAktual][nilai] = keranjangPorsi[nilai];
+        hargaItem[nomorTransaksiAktual][nilai] = totalHargaMakan;
+    
+        if (keranjangMinumanan[nilai] != null) {
+            makan[nomorTransaksiAktual][nilai + 1] = keranjangMinumanan[nilai];
+            porsi[nomorTransaksiAktual][nilai + 1] = keranjangPorsiMinuman[nilai];
+            hargaItem[nomorTransaksiAktual][nilai + 1] = totalHargaMinum;
+        }
+    
         nilai++;
-
+        nomorTransaksiAktual++;
+        totalTransaksi++;
     }
-}
+
+    public static void tampilkanLaporanPenjualan() {
+        System.out.println("=== Laporan Penjualan ===");
+    
+        for (int i = 0; i < totalTransaksi; i++) {
+            System.out.println("Transaksi ke-" + (i + 1) + ":");
+    
+            // Tampilkan informasi pesanan
+            for (int j = 0; j < makan[i].length; j++) {
+                if (makan[i][j] != null) {
+                    System.out.println("Menu: " + makan[i][j] + ", Porsi: " + porsi[i][j] +
+                            ", Harga: Rp " + hargaItem[i][j]);
+                }
+            }
+    
+            // Tampilkan total harga transaksi
+            System.out.println("Total Harga Transaksi: Rp " + (totalHargaMakan + totalHargaMinum));
+            System.out.println(); // Pemisah antara transaksi
+        }
+    }
+    
+ }
