@@ -239,8 +239,17 @@ public class KasirrRestoran05 {
         double diskon = 0;
         if (totalSemuaTransaksi >= 500000) {
             diskon = 0.2 * totalSemuaTransaksi;
-        } else {
-            
         }
+        if (diskon > 0) {
+            System.out.println("Anda mendapatkan diskon sebesar Rp " + diskon );
+            System.out.println("Total setelah diskon : Rp " + (totalSemuaTransaksi - diskon));            
+            
+        } else {
+            System.out.println("Total dari Semua Transaksi : Rp " + totalSemuaTransaksi);
+            
+        } 
+        System.out.println("=========================================");
+            
+        
     }    
 }
