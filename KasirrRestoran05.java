@@ -27,6 +27,8 @@ public class KasirrRestoran05 {
     static int totalHargaMakan,totalHargaMinum;
     static int totalTransaksi = 0; // Untuk menghitung total transaksi yang sudah dilakukan
     static int nomorTransaksiAktual = 0; // Untuk menghitung nomor transaksi yang sedang berlangsung
+    static String[] tanggalTransaksi = new String[100];
+
 
 
     public static void main(String[] args) {
@@ -117,6 +119,10 @@ public class KasirrRestoran05 {
         int pilihanMakanan = sc.nextInt() - 1;
         System.out.print("Berapa porsi: ");
         int jumlahPorsi = sc.nextInt();
+        System.out.print("Masukkan tanggal transaksi (mm/date/yr): ");
+        String tanggal = sc.next();
+        tanggalTransaksi[nomorTransaksiAktual] = tanggal;
+
 
         keranjangMakan[nilai] = daftarMakanan[pilihanMakanan];
         keranjangPorsi[nilai] = jumlahPorsi;
@@ -212,6 +218,7 @@ public class KasirrRestoran05 {
             }
 
             System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
+            System.out.println("Tanggal Transaksi: " + tanggalTransaksi[i]);
             System.out.println(); 
         }
 
@@ -258,6 +265,7 @@ public class KasirrRestoran05 {
         System.out.println("============================================");
             
         } 
+        
             
         
     }    
