@@ -4,7 +4,7 @@ public class KasirrRestoran05 {
 
     static int nilai = 0;
     static String[] daftarMakanan = {
-            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah", "Ayam geprek", "Bakso Daging",
+            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Nasi Bakar", "Ayam geprek", "Bakso Daging",
             "Ayam Teriyaki", "Ayam Lada Hitam", "Chicken Bulgogi", "Kwetiau Goreng"
     };
     static int[] hargaMakanan = {
@@ -112,6 +112,7 @@ public class KasirrRestoran05 {
     }
 
     public static void transaksi(Scanner sc) {
+        System.out.println("======== Transaksi Pembayaran =========");
         System.out.print("Pilih Makanan: ");
         int pilihanMakanan = sc.nextInt() - 1;
         System.out.print("Berapa porsi: ");
@@ -162,10 +163,11 @@ public class KasirrRestoran05 {
         nilai++;
         nomorTransaksiAktual++;
         totalTransaksi++;
+        System.out.println("=================================");
     }
-
+    
     public static void tampilkanLaporanPenjualan() {
-        System.out.println("=== Laporan Penjualan ===");
+        System.out.println("==== Laporan Penjualan ====");
         int totalSemuaTransaksi = 0;
     
         for (int i = 0; i < totalTransaksi; i++) {
@@ -193,7 +195,7 @@ public class KasirrRestoran05 {
     }
     
     public static void strukPembayaran(Scanner sc) {
-        System.out.println("=== Struk Pembayaran ===");
+        System.out.println("==== Struk Pembayaran ====");
         
         // Menampilkan pesanan
         for (int i = 0; i < nomorTransaksiAktual; i++) {
@@ -233,5 +235,12 @@ public class KasirrRestoran05 {
         System.out.println("Uang yang dibayarkan: Rp " + uangDibayarkan);
         System.out.println("Kembalian: Rp " + kembalian);
         System.out.println("========================================");
+
+        double diskon = 0;
+        if (totalSemuaTransaksi >= 500000) {
+            diskon = 0.2 * totalSemuaTransaksi;
+        } else {
+            
+        }
     }    
 }
