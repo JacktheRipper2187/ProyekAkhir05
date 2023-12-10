@@ -212,7 +212,7 @@ public class KasirrRestoran05 {
             }
 
             System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
-            System.out.println(); // Pemisah antara transaksi
+            System.out.println(); 
         }
 
         // Menghitung total harga dari semua transaksi
@@ -242,13 +242,22 @@ public class KasirrRestoran05 {
         }
         if (diskon > 0) {
             System.out.println("Anda mendapatkan diskon sebesar Rp " + diskon );
-            System.out.println("Total setelah diskon : Rp " + (totalSemuaTransaksi - diskon));            
+            System.out.println("Total setelah diskon : Rp " + (totalSemuaTransaksi - diskon));   
+            System.out.println("========================================");     
+            
+            int kembalianSetelahDiskon = uangDibayarkan - (int) (totalSemuaTransaksi - diskon);
+            System.out.println("Kembalian: Rp " + kembalianSetelahDiskon);
+            System.out.println("========================================");
             
         } else {
-            System.out.println("Total dari Semua Transaksi : Rp " + totalSemuaTransaksi);
+        System.out.println("Total dari Semua Transaksi : Rp " + totalSemuaTransaksi);
+        System.out.println("============================================");
+
+        int kembalianTanpaDiskon = uangDibayarkan - totalSemuaTransaksi;
+        System.out.println("Kembalian: Rp " + kembalianTanpaDiskon);
+        System.out.println("============================================");
             
         } 
-        System.out.println("=========================================");
             
         
     }    
