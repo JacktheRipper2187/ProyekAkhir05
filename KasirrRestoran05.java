@@ -253,10 +253,8 @@ public class KasirrRestoran05 {
         System.out.println("Uang yang dibayarkan: Rp " + uangDibayarkan);
         System.out.println("Kembalian: Rp " + kembalian);
         System.out.println("========================================");
-<<<<<<< HEAD
+
     }
-    
-=======
 
         double diskon = 0;
         if (totalSemuaTransaksi >= 500000) {
@@ -284,5 +282,5 @@ public class KasirrRestoran05 {
             
         
     }    
->>>>>>> bbf1e2ba5edfb8e172fa424f2f6bc88901262657
+
 }
