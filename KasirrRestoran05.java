@@ -4,7 +4,7 @@ public class KasirrRestoran05 {
 
     static int nilai = 0;
     static String[] daftarMakanan = {
-            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Telur Bawang Merah", "Ayam geprek", "Bakso Daging",
+            "Nasi Goreng", "Sate Ayam", "Gado-gado", "Nasi Bakar", "Ayam geprek", "Bakso Daging",
             "Ayam Teriyaki", "Ayam Lada Hitam", "Chicken Bulgogi", "Kwetiau Goreng"
     };
     static int[] hargaMakanan = {
@@ -27,6 +27,8 @@ public class KasirrRestoran05 {
     static int totalHargaMakan,totalHargaMinum;
     static int totalTransaksi = 0; // Untuk menghitung total transaksi yang sudah dilakukan
     static int nomorTransaksiAktual = 0; // Untuk menghitung nomor transaksi yang sedang berlangsung
+    static String[] tanggalTransaksi = new String[100];
+
 
 
     public static void main(String[] args) {
@@ -112,10 +114,15 @@ public class KasirrRestoran05 {
     }
 
     public static void transaksi(Scanner sc) {
+        System.out.println("======== Transaksi Pembayaran =========");
         System.out.print("Pilih Makanan: ");
         int pilihanMakanan = sc.nextInt() - 1;
         System.out.print("Berapa porsi: ");
         int jumlahPorsi = sc.nextInt();
+        System.out.print("Masukkan tanggal transaksi (mm/date/yr): ");
+        String tanggal = sc.next();
+        tanggalTransaksi[nomorTransaksiAktual] = tanggal;
+
 
         keranjangMakan[nilai] = daftarMakanan[pilihanMakanan];
         keranjangPorsi[nilai] = jumlahPorsi;
@@ -162,10 +169,11 @@ public class KasirrRestoran05 {
         nilai++;
         nomorTransaksiAktual++;
         totalTransaksi++;
+        System.out.println("=================================");
     }
-
+    
     public static void tampilkanLaporanPenjualan() {
-        System.out.println("=== Laporan Penjualan ===");
+        System.out.println("==== Laporan Penjualan ====");
         int totalSemuaTransaksi = 0;
     
         for (int i = 0; i < totalTransaksi; i++) {
@@ -193,7 +201,7 @@ public class KasirrRestoran05 {
     }
     
     public static void strukPembayaran(Scanner sc) {
-        System.out.println("=== Struk Pembayaran ===");
+        System.out.println("==== Struk Pembayaran ====");
         
         // Menampilkan pesanan
         for (int i = 0; i < nomorTransaksiAktual; i++) {
@@ -210,7 +218,8 @@ public class KasirrRestoran05 {
             }
     
             System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
-            System.out.println(); // Pemisah antara transaksi
+            System.out.println("Tanggal Transaksi: " + tanggalTransaksi[i]);
+            System.out.println(); 
         }
     
         // Menghitung total harga dari semua transaksi
@@ -244,6 +253,36 @@ public class KasirrRestoran05 {
         System.out.println("Uang yang dibayarkan: Rp " + uangDibayarkan);
         System.out.println("Kembalian: Rp " + kembalian);
         System.out.println("========================================");
+<<<<<<< HEAD
     }
     
+=======
+
+        double diskon = 0;
+        if (totalSemuaTransaksi >= 500000) {
+            diskon = 0.2 * totalSemuaTransaksi;
+        }
+        if (diskon > 0) {
+            System.out.println("Anda mendapatkan diskon sebesar Rp " + diskon );
+            System.out.println("Total setelah diskon : Rp " + (totalSemuaTransaksi - diskon));   
+            System.out.println("========================================");     
+            
+            int kembalianSetelahDiskon = uangDibayarkan - (int) (totalSemuaTransaksi - diskon);
+            System.out.println("Kembalian: Rp " + kembalianSetelahDiskon);
+            System.out.println("========================================");
+            
+        } else {
+        System.out.println("Total dari Semua Transaksi : Rp " + totalSemuaTransaksi);
+        System.out.println("============================================");
+
+        int kembalianTanpaDiskon = uangDibayarkan - totalSemuaTransaksi;
+        System.out.println("Kembalian: Rp " + kembalianTanpaDiskon);
+        System.out.println("============================================");
+            
+        } 
+        
+            
+        
+    }    
+>>>>>>> bbf1e2ba5edfb8e172fa424f2f6bc88901262657
 }
