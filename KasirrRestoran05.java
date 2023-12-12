@@ -199,7 +199,7 @@ public class KasirrRestoran05 {
         for (int i = 0; i < nomorTransaksiAktual; i++) {
             System.out.println("Transaksi ke-" + (i + 1) + ":");
             int totalHargaTransaksi = 0;
-
+    
             // Menampilkan informasi pesanan
             for (int j = 0; j < makan[i].length; j++) {
                 if (makan[i][j] != null) {
@@ -208,11 +208,11 @@ public class KasirrRestoran05 {
                     totalHargaTransaksi += hargaItem[i][j];
                 }
             }
-
+    
             System.out.println("Total Harga Transaksi ke-" + (i + 1) + ": Rp " + totalHargaTransaksi);
             System.out.println(); // Pemisah antara transaksi
         }
-
+    
         // Menghitung total harga dari semua transaksi
         int totalSemuaTransaksi = 0;
         for (int i = 0; i < nomorTransaksiAktual; i++) {
@@ -220,18 +220,30 @@ public class KasirrRestoran05 {
                 totalSemuaTransaksi += hargaItem[i][j];
             }
         }
-
+    
+        // Menghitung diskon (misalnya, diskon 10% jika total belanja di atas 100000)
+        double diskonPersen = 0.1; // Ganti dengan persentase diskon yang diinginkan
+        int batasDiskon = 100000; // Ganti dengan batas total belanja untuk mendapatkan diskon
+        double diskon = 0;
+    
+        if (totalSemuaTransaksi > batasDiskon) {
+            diskon = totalSemuaTransaksi * diskonPersen;
+        }
+    
         // Input jumlah uang yang dibayarkan
         System.out.print("Masukkan jumlah uang yang dibayarkan: ");
         int uangDibayarkan = sc.nextInt();
-
+    
         // Menghitung kembalian
-        int kembalian = uangDibayarkan - totalSemuaTransaksi;
-
+        int kembalian = uangDibayarkan - totalSemuaTransaksi + (int) diskon;
+    
         // Menampilkan struk pembayaran
         System.out.println("Total dari Semua Transaksi: Rp " + totalSemuaTransaksi);
+        System.out.println("Diskon: Rp " + (int) diskon);
+        System.out.println("Total Bayar (setelah diskon): Rp " + (totalSemuaTransaksi - (int) diskon));
         System.out.println("Uang yang dibayarkan: Rp " + uangDibayarkan);
         System.out.println("Kembalian: Rp " + kembalian);
         System.out.println("========================================");
-    }    
+    }
+    
 }
