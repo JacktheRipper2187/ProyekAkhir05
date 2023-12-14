@@ -119,7 +119,7 @@ public class KasirrRestoran05 {
         int pilihanMakanan = sc.nextInt() - 1;
         System.out.print("Berapa porsi: ");
         int jumlahPorsi = sc.nextInt();
-        System.out.print("Masukkan tanggal transaksi (mm/date/yr): ");
+        System.out.print("Masukkan tanggal transaksi (mm/date/yy): ");
         String tanggal = sc.next();
         tanggalTransaksi[nomorTransaksiAktual] = tanggal;
 
