@@ -126,7 +126,7 @@ public class bismillah {
                 System.out.println("||                  1. Daftar Menu & Stok             ||");
                 System.out.println("||                  2. Transaksi                      ||");
                 System.out.println("||                  3. Struk Pembayaran               ||");
-                System.out.println("||                  4. Tambah Stok Barang             ||");
+                System.out.println("||                  4. Tambah Stok Menu               ||");
                 System.out.println("||                  5. Tambah Menu Baru               ||");
                 System.out.println("||                  6. Laporan Pendapatan             ||");
                 System.out.println("||                  7. Exit                           ||");
@@ -204,7 +204,7 @@ public class bismillah {
     
             System.out.println("Harga: " + hargaMenu[index]);
     
-            System.out.print("Masukkan jumlah barang yang akan ditambahkan ke stok: ");
+            System.out.print("Masukkan jumlah menu yang akan ditambahkan ke stok: ");
             int jmlTambahStok = sc.nextInt();
             stokMenu[index] += jmlTambahStok;
     
@@ -220,19 +220,19 @@ public class bismillah {
             daftarMenuBaru = sc.nextLine();
             menuSudahAda = false; // Inisialisasi sebagai false di awal
 
-            // Pengecekan apakah barang sudah ada dalam array daftarMenu
+            // Pengecekan apakah menu sudah ada dalam array daftarMenu
             for (int i = 0; i < jmlMenu; i++) {
                 if (daftarMenuBaru.equalsIgnoreCase(daftarMenu[i])) {
                     System.out.println(daftarMenuBaru + " sudah ada dalam daftar barang!");
-                    menuSudahAda = true; // Jika barang sudah ada, ubah menjadi true
-                    break; // Keluar dari loop segera setelah ditemukan barang yang sama
+                    menuSudahAda = true; // Jika menu sudah ada, ubah menjadi true
+                    break; // Keluar dari loop segera setelah ditemukan  menu yang sama
                 }
             }
 
             if (!menuSudahAda) {
-                System.out.print("Masukkan harga barang: ");
+                System.out.print("Masukkan menu baru: ");
                 hargaMenuBaru = sc.nextInt();
-                System.out.print("Masukkan stok barang: ");
+                System.out.print("Masukkan jumlah stok : ");
                 stokMenuBaru = sc.nextInt();
 
                 if (jmlMenu < daftarMenu.length && jmlMenu < stokMenu.length && jmlMenu < hargaMenu.length) {
