@@ -179,7 +179,51 @@ public class bismillah {
     }
 
     static void transaksi(Scanner sc){
-        
+        int totalHarga = 0;
+
+    // Menampilkan daftar menu
+    menu();
+
+    System.out.println("=========================================");
+    System.out.println("           PEMESANAN MENU               ");
+    System.out.println("=========================================");
+
+    // Memilih menu untuk transaksi
+    System.out.print("Masukkan nomor menu yang ingin dipesan: ");
+    int nomorMenu = sc.nextInt();
+    sc.nextLine();
+
+    // Memilih jumlah pesanan
+    System.out.print("Masukkan jumlah pesanan: ");
+    int jumlahPesanan = sc.nextInt();
+    sc.nextLine();
+
+    // Menghitung total harga
+    int index = nomorMenu - 1;
+    if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
+        if (stokMenu[index] >= jumlahPesanan) {
+            totalHarga = hargaMenu[index] * jumlahPesanan;
+
+            // Update stok
+            stokMenu[index] -= jumlahPesanan;
+
+            // Menampilkan rincian pesanan
+            System.out.println("\n=========================================");
+            System.out.println("          RINCIAN PESANAN               ");
+            System.out.println("=========================================");
+            System.out.println("Menu         : " + daftarMenu[index]);
+            System.out.println("Harga        : " + hargaMenu[index]);
+            System.out.println("Jumlah       : " + jumlahPesanan);
+            System.out.println("Total Harga  : " + totalHarga);
+            System.out.println("=========================================");
+
+            // Simpan rincian pesanan
+        } else {
+            System.out.println("Maaf, stok tidak mencukupi untuk pesanan ini.");
+        }
+    } else {
+        System.out.println("Input tidak valid.");
+    }
     }
 
     static void cetakStruk(){
