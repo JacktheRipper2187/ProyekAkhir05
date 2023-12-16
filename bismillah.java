@@ -15,6 +15,8 @@ public class bismillah {
     static int hargaMenu[] = new int[100];
     static int stokMenu[] = new int[100];
 
+    static int totalPendapatan = 0;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -202,10 +204,13 @@ public class bismillah {
     int index = nomorMenu - 1;
     if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
         if (stokMenu[index] >= jumlahPesanan) {
-            totalHarga = hargaMenu[index] * jumlahPesanan;
-
+              totalPendapatan += totalHarga; 
+            
+            totalHarga = hargaMenu[index] * jumlahPesanan;         
             // Update stok
             stokMenu[index] -= jumlahPesanan;
+            
+          
 
             // Menampilkan rincian pesanan
             System.out.println("\n=========================================");
@@ -300,6 +305,12 @@ public class bismillah {
     //Fungsi Laporan Pendapatan
     private static void laporanPendapatan(){
 
-    }
+            System.out.println("===============================================");
+            System.out.println("           LAPORAN PENDAPATAN RESTORAN          ");
+            System.out.println("===============================================");
+            System.out.println("Total Pendapatan: " + totalPendapatan);
+            System.out.println("===============================================");
+        
+       }
 }
 
