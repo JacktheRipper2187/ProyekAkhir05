@@ -223,17 +223,17 @@ public class bismillah {
             // Pengecekan apakah menu sudah ada dalam array daftarMenu
             for (int i = 0; i < jmlMenu; i++) {
                 if (daftarMenuBaru.equalsIgnoreCase(daftarMenu[i])) {
-                    System.out.println(daftarMenuBaru + " sudah ada dalam daftar menu!");
+                    System.out.println(daftarMenuBaru + " sudah ada dalam daftar barang!");
                     menuSudahAda = true; // Jika menu sudah ada, ubah menjadi true
                     break; // Keluar dari loop segera setelah ditemukan  menu yang sama
                 }
             }
 
             if (!menuSudahAda) {
-                System.out.print("Masukkan jumlah stok: ");
-                stokMenuBaru = sc.nextInt();
-                System.out.print("Masukkan harga: ");
+                System.out.print("Masukkan menu baru: ");
                 hargaMenuBaru = sc.nextInt();
+                System.out.print("Masukkan jumlah stok : ");
+                stokMenuBaru = sc.nextInt();
 
                 if (jmlMenu < daftarMenu.length && jmlMenu < stokMenu.length && jmlMenu < hargaMenu.length) {
                     daftarMenu[jmlMenu] = daftarMenuBaru;
