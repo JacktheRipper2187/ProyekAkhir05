@@ -4,7 +4,7 @@ public class bismillah {
     Scanner sc = new Scanner(System.in);
 
     static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
-    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru;
+    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar=0, diskon=0;
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
@@ -204,13 +204,10 @@ public class bismillah {
     int index = nomorMenu - 1;
     if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
         if (stokMenu[index] >= jumlahPesanan) {
-              totalPendapatan += totalHarga; 
-            
-            totalHarga = hargaMenu[index] * jumlahPesanan;         
+            totalHarga = hargaMenu[index] * jumlahPesanan;
+
             // Update stok
             stokMenu[index] -= jumlahPesanan;
-            
-          
 
             // Menampilkan rincian pesanan
             System.out.println("\n=========================================");
@@ -222,7 +219,46 @@ public class bismillah {
             System.out.println("Total Harga  : " + totalHarga);
             System.out.println("=========================================");
 
-            // Simpan rincian pesanan
+            // Pilihan pembayaran
+            System.out.println("\nPILIHAN PEMBAYARAN:");
+            System.out.println("1. Tunai");
+            System.out.println("2. Transfer bank");
+            System.out.print("Pilih metode pembayaran (1/2): ");
+            int metodePembayaran = sc.nextInt();
+            sc.nextLine();
+
+            // Proses pembayaran
+            if (metodePembayaran == 1) {
+                System.out.print("Masukkan jumlah uang tunai: ");
+                int jumlahUangTunai = sc.nextInt();
+                sc.nextLine();
+
+                // Hitung kembalian
+                int kembalian = jumlahUangTunai - totalHarga;
+                if (kembalian >= 0) {
+                    System.out.println("\n=========================================");
+                    System.out.println("         TRANSAKSI BERHASIL              ");
+                    System.out.println("=========================================");
+                    System.out.println("Total Harga        : " + totalHarga);
+                    System.out.println("Jumlah Uang Tunai  : " + jumlahUangTunai);
+                    System.out.println("Kembalian          : " + kembalian);
+                    System.out.println("=========================================");
+                } else {
+                    System.out.println("Jumlah uang tunai tidak mencukupi.");
+                }
+            } else if (metodePembayaran == 2) {
+                System.out.println("========================================================");
+                System.out.println("||                    Transfer bank                   ||");
+                System.out.println("========================================================");
+                System.out.println("|| 2341760042----------Karina Ika                     ||");
+                System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
+                System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
+                System.out.println("========================================================");
+                totalBayar = totalHarga;
+                System.out.println("Total yang harus dibayar: Rp " + totalBayar);
+            } else {
+                System.out.println("Pilihan pembayaran tidak valid.");
+            }
         } else {
             System.out.println("Maaf, stok tidak mencukupi untuk pesanan ini.");
         }
