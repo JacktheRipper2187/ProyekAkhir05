@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class bismillah {
     Scanner sc = new Scanner(System.in);
 
-    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru;
+    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
     static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru;
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
@@ -191,9 +191,9 @@ public class bismillah {
         int index = -1;
         do {
         System.out.print("Masukkan menu : ");
-        menuBaru = sc.nextLine();
+        inputMenu = sc.nextLine();
         for (int i = 0; i < jmlMenu; i++) {
-            if (daftarMenu[i].equalsIgnoreCase(menuBaru)) {
+            if (daftarMenu[i].equalsIgnoreCase(inputMenu)) {
                 index = i;
                 break;
             }
