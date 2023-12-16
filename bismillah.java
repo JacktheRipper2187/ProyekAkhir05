@@ -113,10 +113,11 @@ public class bismillah {
                         break;
                     case 2:
                         laporanPendapatan();
-                    default:
+                    case 3:
+                        System.out.println("Terima kasih");
                         break;
                 }
-            } while (menuManager!=5);
+            } while (menuManager!=3);
             sc.close();
         } else {
             do {
