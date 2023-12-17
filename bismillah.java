@@ -4,12 +4,13 @@ public class bismillah {
     Scanner sc = new Scanner(System.in);
 
     static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
-    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar=0, diskon=0;
+    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar=0,jumlahUangTunai, nomorMenu, jumlahPesanan;
+    static double diskon=0.0,diskonKasar=0.0,diskonAdmin = 0.0;
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
     static boolean berhasilLogin = false;
-    static boolean isManager = false;
+    static boolean isManager = false,pesan=true;
 
     static String daftarMenu[] = new String[100];
     static int hargaMenu[] = new int[100];
@@ -140,7 +141,8 @@ public class bismillah {
                 System.out.println("||                  4. Tambah Stok Menu               ||");
                 System.out.println("||                  5. Tambah Menu Baru               ||");
                 System.out.println("||                  6. Laporan Pendapatan             ||");
-                System.out.println("||                  7. Exit                           ||");
+                System.out.println("||                  7. Diskon                         ||");
+                System.out.println("||                  8. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
                 System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7) : ");
                 pilihan = sc.nextInt();
@@ -153,7 +155,7 @@ public class bismillah {
                         transaksi(sc);
                         break;
                     case 3:
-                        cetakStruk(mskUsername, countBarangStruk);
+                        cetakStruk(mskUsername);
                         break;
                     case 4:
                         tambahStok(sc);
@@ -165,10 +167,13 @@ public class bismillah {
                         laporanPendapatan();
                         break;
                     case 7:
+                        aturDiskon(sc);
+                        break;
+                    case 8:
                         System.out.println("Terima kasih");
                         break;
                 }
-            } while (pilihan != 7);
+            } while (pilihan != 8);
                 sc.close();
         }
     }
@@ -176,21 +181,21 @@ public class bismillah {
     private static void menu(){
             // Menampilkan daftar menu
             System.out.println("---- Daftar Menu Makanan & Minuman ----:");
-            System.out.println("--------------------------------------------");
-            System.out.println("| No |   Makanan   |   Harga   |    Stok   |");
-            System.out.println("--------------------------------------------");
+            System.out.println("-------------------------------------------------");
+            System.out.println("| No |   Makanan         |  Harga   |    Stok   |");
+            System.out.println("-------------------------------------------------");
             // code u/ kolom daftar
             for (int i = 0; i < jmlMenu; i++) {
-                System.out.printf("| %-2d | %-12s | %-8d | %-9d |\n", i + 1, daftarMenu[i],
+                System.out.printf("| %-2d | %-17s | %-8d | %-9d |\n", i + 1, daftarMenu[i],
                         hargaMenu[i], stokMenu[i]);
             }
-            System.out.println("--------------------------------------------");
+            System.out.println("-------------------------------------------------");
     
     }
 
     static void transaksi(Scanner sc){
         int totalHarga = 0;
-
+    if (pesan) {  
     // Menampilkan daftar menu
     menu();
 
@@ -200,15 +205,18 @@ public class bismillah {
 
     // Memilih menu untuk transaksi
     System.out.print("Masukkan nomor menu yang ingin dipesan: ");
-    int nomorMenu = sc.nextInt();
+    nomorMenu = sc.nextInt();
     sc.nextLine();
 
     // Memilih jumlah pesanan
     System.out.print("Masukkan jumlah pesanan: ");
-    int jumlahPesanan = sc.nextInt();
+    jumlahPesanan = sc.nextInt();
     sc.nextLine();
-    
+    pesan=false;
 
+    }
+    if (!pesan) {
+    
     // Menghitung total harga
     int index = nomorMenu - 1;
     if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
@@ -216,12 +224,8 @@ public class bismillah {
             totalHarga = hargaMenu[index] * jumlahPesanan;
 
             totalBayar += totalHarga;
-
-            if (totalBayar > 100000) {
-                diskon = 20000; // Ubah ini sesuai dengan jumlah diskon yang diinginkan
-                totalBayar -= diskon; // Mengurangi totalBayar dengan nilai diskon
-            }
-
+           diskon=diskonKasar*totalHarga;
+          
             if (totalHarga > 0) {
                 namaBarangStruk[countBarangStruk] = daftarMenu[index];
                 hargaBarangStruk[countBarangStruk] = hargaMenu[index];
@@ -234,13 +238,15 @@ public class bismillah {
             stokMenu[index] -= jumlahPesanan;
 
             // Menampilkan rincian pesanan
+            
             System.out.println("\n=========================================");
             System.out.println("          RINCIAN PESANAN               ");
             System.out.println("=========================================");
             System.out.println("Menu         : " + daftarMenu[index]);
             System.out.println("Harga        : " + hargaMenu[index]);
             System.out.println("Jumlah       : " + jumlahPesanan);
-            System.out.println("Total Harga  : " + totalHarga);
+            System.out.println("Diskon       : " + (int)diskonAdmin+"%");
+            System.out.println("Total Harga  : " + (totalHarga-(int)diskon));
             System.out.println("=========================================");
 
             // Pilihan pembayaran
@@ -254,22 +260,26 @@ public class bismillah {
             // Proses pembayaran
             if (metodePembayaran == 1) {
                 System.out.print("Masukkan jumlah uang tunai: ");
-                int jumlahUangTunai = sc.nextInt();
+                jumlahUangTunai = sc.nextInt();
                 sc.nextLine();
 
                 // Hitung kembalian
-                int kembalian = jumlahUangTunai - totalHarga;
+                int kembalian = jumlahUangTunai - (totalHarga-(int)diskon);
                 if (kembalian >= 0) {
                     System.out.println("\n=========================================");
                     System.out.println("         TRANSAKSI BERHASIL              ");
                     System.out.println("=========================================");
-                    System.out.println("Total Harga        : " + totalHarga);
+                    System.out.println("Total Harga        : " + (totalHarga-(int)diskon));
                     System.out.println("Jumlah Uang Tunai  : " + jumlahUangTunai);
                     System.out.println("Kembalian          : " + kembalian);
                     System.out.println("=========================================");
+                    pesan=true;
                 } else {
                     int kurangBayar = Math.abs(kembalian); // Hitung jumlah kekurangan bayar
                     System.out.println("Jumlah uang tunai tidak mencukupi. Kekurangan bayar: " + kurangBayar);
+                    pesan=false;
+                    transaksi(sc);
+                    
                 }
             } else if (metodePembayaran == 2) {
                 System.out.println("========================================================");
@@ -279,7 +289,7 @@ public class bismillah {
                 System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
                 System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
                 System.out.println("========================================================");
-                totalBayar = totalHarga;
+                totalBayar = (totalHarga-(int)diskon);
                 System.out.println("Total yang harus dibayar: Rp " + totalBayar);
             } else {
                 System.out.println("Pilihan pembayaran tidak valid.");
@@ -290,10 +300,11 @@ public class bismillah {
     } else {
         System.out.println("Input tidak valid.");
     }
+}
     }
 
   // Fungsi Cetak Struk
-  private static void cetakStruk(String masukkanUsername, int jumlahUangTunai) {
+  private static void cetakStruk(String masukkanUsername) {
     int totalHarga = 0;
     for (int i = 0; i < countBarangStruk; i++) {
         totalHarga += totalHargaBarangStruk[i];
@@ -315,21 +326,22 @@ public class bismillah {
         System.out.print(" X " + jumlahBarangStruk[i]);
         System.out.println(" total: " + totalHargaBarangStruk[i]);
     }
+   
 
     System.out.println("-------------------------------------------------------");
     System.out.println("  Total Belanja                     Rp:" + totalHarga);
-    System.out.println("  Diskon                            Rp:" + diskon);
+    System.out.println("  Diskon                            Rp:" + (int)diskon);
     System.out.println("-------------------------------------------------------");
-    System.out.println("  TOTAL                             Rp:" + (totalHarga - diskon));
+    System.out.println("  TOTAL                             Rp:" + (totalHarga - (int)diskon));
     System.out.println("-------------------------------------------------------");
 
      // Penambahan variabel kembalian
-    int kembalian = jumlahUangTunai - totalHarga;
+    int kembalian = jumlahUangTunai - (totalHarga-(int)diskon);
     System.out.println("  Tunai                             Rp:" + jumlahUangTunai);
     System.out.println("  Kembalian                         Rp:" + kembalian);
     System.out.println("=======================================================");
     System.out.println("            TERIMAKASIH ATAS KUNJUNGANNYA              ");
-    System.out.println("    BARANG YANG SUDAH DIBELI TIDAK DAPAT DIKEMBALIKAN  ");
+    System.out.println("                  SELAMAT MENIKMATI                    ");
     System.out.println("=======================================================");
 }
 
@@ -409,5 +421,13 @@ public class bismillah {
             System.out.println("===============================================");
         
        }
-}
 
+    //    fungsi untuk atur diskon
+       private static void aturDiskon(Scanner sc){
+        System.out.print("Masukkan nilai diskon yang diinginkan oleh admin: ");
+        diskonAdmin = sc.nextInt();
+        System.out.println("Diskon sebesar " + diskonAdmin + "% telah diatur oleh admin.");
+        diskonKasar += diskonAdmin / 100;
+        }
+    
+    }
