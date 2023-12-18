@@ -3,14 +3,15 @@ import java.util.Scanner;
 public class projek {
     Scanner sc = new Scanner(System.in);
 
-    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
-    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar=0,jumlahUangTunai, nomorMenu, jumlahPesanan;
-    static double diskon=0.0,diskonKasar=0.0,diskonAdmin = 0.0;
+    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu, kodeVoucher;
+    static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar = 0, jumlahUangTunai,
+            nomorMenu, jumlahPesanan, totalHarga;
+    static double diskon = 0.0, diskonKasar = 0.0, diskonAdmin = 0.0;
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
     static boolean berhasilLogin = false;
-    static boolean isManager = false,pesan=true;
+    static boolean isManager = false, pesan = true;
 
     static String daftarMenu[] = new String[100];
     static int hargaMenu[] = new int[100];
@@ -25,6 +26,8 @@ public class projek {
     static int totalPendapatan = 0;
     static String[] tanggalTransaksi = new String[100]; // Array untuk tanggal transaksi
 
+    // static String kodeVoucher[] = {"VOUCHER1", "VOUCHER2", "VOUCHER3"};
+    // static int nilaiVoucher = 5000;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -94,7 +97,7 @@ public class projek {
                     berhasilLogin = true;
                     isManager = username[i].equalsIgnoreCase("Manager");
                     break;
-                    
+
                 }
             }
             if (berhasilLogin) {
@@ -103,7 +106,7 @@ public class projek {
                 System.out.println("==============================");
                 System.out.println("|    GAGAL MASUK. COBA LAGI  |");
                 System.out.println("==============================");
-            }           
+            }
         }
 
         if (isManager) {
@@ -128,7 +131,7 @@ public class projek {
                         System.out.println("Terima kasih");
                         break;
                 }
-            } while (menuManager!=3);
+            } while (menuManager != 3);
             sc.close();
         } else {
             do {
@@ -142,11 +145,13 @@ public class projek {
                 System.out.println("||                  5. Tambah Menu Baru               ||");
                 System.out.println("||                  6. Laporan Pendapatan             ||");
                 System.out.println("||                  7. Diskon                         ||");
-                System.out.println("||                  8. Exit                           ||");
+                System.out.println("||                  8. Voucher                        ||");
+                System.out.println("||                  9. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
                 System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7) : ");
                 pilihan = sc.nextInt();
                 sc.nextLine();
+
                 switch (pilihan) {
                     case 1:
                         menu();
@@ -170,209 +175,211 @@ public class projek {
                         aturDiskon(sc);
                         break;
                     case 8:
+                        voucher(sc);
+                    case 9:
                         System.out.println("Terima kasih");
                         break;
                 }
             } while (pilihan != 8);
-                sc.close();
+            sc.close();
         }
     }
 
-    private static void menu(){
-            // Menampilkan daftar menu
-            System.out.println("---- Daftar Menu Makanan & Minuman ----:");
-            System.out.println("-------------------------------------------------");
-            System.out.println("| No |   Makanan         |  Harga   |    Stok   |");
-            System.out.println("-------------------------------------------------");
-            // code u/ kolom daftar
-            for (int i = 0; i < jmlMenu; i++) {
-                System.out.printf("| %-2d | %-17s | %-8d | %-9d |\n", i + 1, daftarMenu[i],
-                        hargaMenu[i], stokMenu[i]);
-            }
-            System.out.println("-------------------------------------------------");
-    
+    private static void menu() {
+        // Menampilkan daftar menu
+        System.out.println("---- Daftar Menu Makanan & Minuman ----:");
+        System.out.println("-------------------------------------------------");
+        System.out.println("| No |   Makanan         |  Harga   |    Stok   |");
+        System.out.println("-------------------------------------------------");
+        // code u/ kolom daftar
+        for (int i = 0; i < jmlMenu; i++) {
+            System.out.printf("| %-2d | %-17s | %-8d | %-9d |\n", i + 1, daftarMenu[i],
+                    hargaMenu[i], stokMenu[i]);
+        }
+        System.out.println("-------------------------------------------------");
+
     }
 
-    static void transaksi(Scanner sc){
+    static void transaksi(Scanner sc) {
         int totalHarga = 0;
-    if (pesan) {  
-    // Menampilkan daftar menu
-    menu();
+        if (pesan) {
+            // Menampilkan daftar menu
+            menu();
 
-    System.out.println("=========================================");
-    System.out.println("           PEMESANAN MENU               ");
-    System.out.println("=========================================");
-
-    // Memilih menu untuk transaksi
-    System.out.print("Masukkan nomor menu yang ingin dipesan: ");
-    nomorMenu = sc.nextInt();
-    sc.nextLine();
-
-    // Memilih jumlah pesanan
-    System.out.print("Masukkan jumlah pesanan: ");
-    jumlahPesanan = sc.nextInt();
-    sc.nextLine();
-    pesan=false;
-
-    }
-    if (!pesan) {
-    
-    // Menghitung total harga
-    int index = nomorMenu - 1;
-    if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
-        if (stokMenu[index] >= jumlahPesanan) {
-            totalHarga = hargaMenu[index] * jumlahPesanan;
-
-            totalBayar += totalHarga;
-           diskon=diskonKasar*totalHarga;
-          
-            if (totalHarga > 0) {
-                namaBarangStruk[countBarangStruk] = daftarMenu[index];
-                hargaBarangStruk[countBarangStruk] = hargaMenu[index];
-                jumlahBarangStruk[countBarangStruk] = jumlahPesanan;
-                totalHargaBarangStruk[countBarangStruk] = totalHarga;
-                countBarangStruk++;
-            }
-
-            // Update stok
-            stokMenu[index] -= jumlahPesanan;
-
-            // Menampilkan rincian pesanan
-            
-            System.out.println("\n=========================================");
-            System.out.println("          RINCIAN PESANAN               ");
             System.out.println("=========================================");
-            System.out.println("Menu         : " + daftarMenu[index]);
-            System.out.println("Harga        : " + hargaMenu[index]);
-            System.out.println("Jumlah       : " + jumlahPesanan);
-            System.out.println("Diskon       : " + (int)diskonAdmin+"%");
-            System.out.println("Total Harga  : " + (totalHarga-(int)diskon));
+            System.out.println("           PEMESANAN MENU               ");
             System.out.println("=========================================");
 
-            // Pilihan pembayaran
-            System.out.println("\nPILIHAN PEMBAYARAN:");
-            System.out.println("1. Tunai");
-            System.out.println("2. Transfer bank");
-            System.out.print("Pilih metode pembayaran (1/2): ");
-            int metodePembayaran = sc.nextInt();
+            // Memilih menu untuk transaksi
+            System.out.print("Masukkan nomor menu yang ingin dipesan: ");
+            nomorMenu = sc.nextInt();
             sc.nextLine();
 
-            // Proses pembayaran
-            if (metodePembayaran == 1) {
-                System.out.print("Masukkan jumlah uang tunai: ");
-                jumlahUangTunai = sc.nextInt();
-                sc.nextLine();
+            // Memilih jumlah pesanan
+            System.out.print("Masukkan jumlah pesanan: ");
+            jumlahPesanan = sc.nextInt();
+            sc.nextLine();
+            pesan = false;
 
-                // Hitung kembalian
-                int kembalian = jumlahUangTunai - (totalHarga-(int)diskon);
-                if (kembalian >= 0) {
-                    System.out.println("\n=========================================");
-                    System.out.println("         TRANSAKSI BERHASIL              ");
-                    System.out.println("=========================================");
-                    System.out.println("Total Harga        : " + (totalHarga-(int)diskon));
-                    System.out.println("Jumlah Uang Tunai  : " + jumlahUangTunai);
-                    System.out.println("Kembalian          : " + kembalian);
-                    System.out.println("=========================================");
-                    pesan=true;
-                } else {
-                    int kurangBayar = Math.abs(kembalian); // Hitung jumlah kekurangan bayar
-                    System.out.println("Jumlah uang tunai tidak mencukupi. Kekurangan bayar: " + kurangBayar);
-                    pesan=false;
-                    transaksi(sc);
-                    
-                }
-            } else if (metodePembayaran == 2) {
-                System.out.println("========================================================");
-                System.out.println("||                    Transfer bank                   ||");
-                System.out.println("========================================================");
-                System.out.println("|| 2341760042----------Karina Ika                     ||");
-                System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
-                System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
-                System.out.println("========================================================");
-                totalBayar = (totalHarga-(int)diskon);
-                System.out.println("Total yang harus dibayar: Rp " + totalBayar);
-            } else {
-                System.out.println("Pilihan pembayaran tidak valid.");
-            }
-        } else {
-            System.out.println("Maaf, stok tidak mencukupi untuk pesanan ini.");
         }
-    } else {
-        System.out.println("Input tidak valid.");
+        if (!pesan) {
+
+            // Menghitung total harga
+            int index = nomorMenu - 1;
+            if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
+                if (stokMenu[index] >= jumlahPesanan) {
+                    totalHarga = hargaMenu[index] * jumlahPesanan;
+
+                    totalBayar += totalHarga;
+                    diskon = diskonKasar * totalHarga;
+
+                    if (totalHarga > 0) {
+                        namaBarangStruk[countBarangStruk] = daftarMenu[index];
+                        hargaBarangStruk[countBarangStruk] = hargaMenu[index];
+                        jumlahBarangStruk[countBarangStruk] = jumlahPesanan;
+                        totalHargaBarangStruk[countBarangStruk] = totalHarga;
+                        countBarangStruk++;
+                    }
+
+                    // Update stok
+                    stokMenu[index] -= jumlahPesanan;
+
+                    // Menampilkan rincian pesanan
+
+                    System.out.println("\n=========================================");
+                    System.out.println("          RINCIAN PESANAN               ");
+                    System.out.println("=========================================");
+                    System.out.println("Menu         : " + daftarMenu[index]);
+                    System.out.println("Harga        : " + hargaMenu[index]);
+                    System.out.println("Jumlah       : " + jumlahPesanan);
+                    System.out.println("Diskon       : " + (int) diskonAdmin + "%");
+                    System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
+                    System.out.println("=========================================");
+
+                    // Pilihan pembayaran
+                    System.out.println("\nPILIHAN PEMBAYARAN:");
+                    System.out.println("1. Tunai");
+                    System.out.println("2. Transfer bank");
+                    System.out.print("Pilih metode pembayaran (1/2): ");
+                    int metodePembayaran = sc.nextInt();
+                    sc.nextLine();
+
+                    // Proses pembayaran
+                    if (metodePembayaran == 1) {
+                        System.out.print("Masukkan jumlah uang tunai: ");
+                        jumlahUangTunai = sc.nextInt();
+                        sc.nextLine();
+
+                        // Hitung kembalian
+                        int kembalian = jumlahUangTunai - (totalHarga - (int) diskon);
+                        if (kembalian >= 0) {
+                            System.out.println("\n=========================================");
+                            System.out.println("         TRANSAKSI BERHASIL              ");
+                            System.out.println("=========================================");
+                            System.out.println("Total Harga        : " + (totalHarga - (int) diskon));
+                            System.out.println("Jumlah Uang Tunai  : " + jumlahUangTunai);
+                            System.out.println("Kembalian          : " + kembalian);
+                            System.out.println("=========================================");
+                            pesan = true;
+                        } else {
+                            int kurangBayar = Math.abs(kembalian); // Hitung jumlah kekurangan bayar
+                            System.out.println("Jumlah uang tunai tidak mencukupi. Kekurangan bayar: " + kurangBayar);
+                            pesan = false;
+                            transaksi(sc);
+
+                        }
+                    } else if (metodePembayaran == 2) {
+                        System.out.println("========================================================");
+                        System.out.println("||                    Transfer bank                   ||");
+                        System.out.println("========================================================");
+                        System.out.println("|| 2341760042----------Karina Ika                     ||");
+                        System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
+                        System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
+                        System.out.println("========================================================");
+                        totalBayar = (totalHarga - (int) diskon);
+                        System.out.println("Total yang harus dibayar: Rp " + totalBayar);
+                    } else {
+                        System.out.println("Pilihan pembayaran tidak valid.");
+                    }
+                } else {
+                    System.out.println("Maaf, stok tidak mencukupi untuk pesanan ini.");
+                }
+            } else {
+                System.out.println("Input tidak valid.");
+            }
+        }
     }
-}
+
+    // Fungsi Cetak Struk
+    private static void cetakStruk(String masukkanUsername) {
+        int totalHarga = 0;
+        for (int i = 0; i < countBarangStruk; i++) {
+            totalHarga += totalHargaBarangStruk[i];
+        }
+
+        System.out.println("||===================================================||");
+        System.out.println("||                 KING RESTAURANT                   ||");
+        System.out.println("||                 Struk Pembayaran                  ||");
+        System.out.println("||   Jl. Soekarno Hatta No. 9 Kelurahan Jatimulyo,   ||");
+        System.out.println("|| Kecamatan Lowokwaru, Kota Malang,Jawa Timur 65141 ||");
+        System.out.println("||===================================================||");
+        System.out.println("  Kasir : " + masukkanUsername);
+        System.out.println("  Tanggal transaksi : " + java.time.LocalDate.now());
+        System.out.println("  Nama Barang : ");
+
+        for (int i = 0; i < countBarangStruk; i++) {
+            System.out.print("  " + namaBarangStruk[i]);
+            System.out.print(" " + hargaBarangStruk[i]);
+            System.out.print(" X " + jumlahBarangStruk[i]);
+            System.out.println(" total: " + totalHargaBarangStruk[i]);
+        }
+
+        System.out.println("-------------------------------------------------------");
+        System.out.println("  Total Belanja                     Rp:" + totalHarga);
+        System.out.println("  Diskon                            Rp:" + (int) diskon);
+        System.out.println("-------------------------------------------------------");
+        System.out.println("  TOTAL                             Rp:" + (totalHarga - (int) diskon));
+        System.out.println("-------------------------------------------------------");
+
+        // Penambahan variabel kembalian
+        int kembalian = jumlahUangTunai - (totalHarga - (int) diskon);
+        System.out.println("  Tunai                             Rp:" + jumlahUangTunai);
+        System.out.println("  Kembalian                         Rp:" + kembalian);
+        System.out.println("=======================================================");
+        System.out.println("            TERIMAKASIH ATAS KUNJUNGANNYA              ");
+        System.out.println("                  SELAMAT MENIKMATI                    ");
+        System.out.println("=======================================================");
     }
 
-  // Fungsi Cetak Struk
-  private static void cetakStruk(String masukkanUsername) {
-    int totalHarga = 0;
-    for (int i = 0; i < countBarangStruk; i++) {
-        totalHarga += totalHargaBarangStruk[i];
-    }
-
-    System.out.println("||===================================================||");
-    System.out.println("||                 KING RESTAURANT                   ||");
-    System.out.println("||                 Struk Pembayaran                  ||");
-    System.out.println("||   Jl. Soekarno Hatta No. 9 Kelurahan Jatimulyo,   ||");
-    System.out.println("|| Kecamatan Lowokwaru, Kota Malang,Jawa Timur 65141 ||");
-    System.out.println("||===================================================||");
-    System.out.println("  Kasir : " + masukkanUsername);
-    System.out.println("  Tanggal transaksi : " + java.time.LocalDate.now());
-    System.out.println("  Nama Barang : ");
-
-    for (int i = 0; i < countBarangStruk; i++) {
-        System.out.print("  " + namaBarangStruk[i]);
-        System.out.print(" " + hargaBarangStruk[i]);
-        System.out.print(" X " + jumlahBarangStruk[i]);
-        System.out.println(" total: " + totalHargaBarangStruk[i]);
-    }
-   
-
-    System.out.println("-------------------------------------------------------");
-    System.out.println("  Total Belanja                     Rp:" + totalHarga);
-    System.out.println("  Diskon                            Rp:" + (int)diskon);
-    System.out.println("-------------------------------------------------------");
-    System.out.println("  TOTAL                             Rp:" + (totalHarga - (int)diskon));
-    System.out.println("-------------------------------------------------------");
-
-     // Penambahan variabel kembalian
-    int kembalian = jumlahUangTunai - (totalHarga-(int)diskon);
-    System.out.println("  Tunai                             Rp:" + jumlahUangTunai);
-    System.out.println("  Kembalian                         Rp:" + kembalian);
-    System.out.println("=======================================================");
-    System.out.println("            TERIMAKASIH ATAS KUNJUNGANNYA              ");
-    System.out.println("                  SELAMAT MENIKMATI                    ");
-    System.out.println("=======================================================");
-}
-
-    static void tambahStok(Scanner sc){
+    static void tambahStok(Scanner sc) {
         int index = -1;
         do {
-        System.out.print("Masukkan menu : ");
-        inputMenu = sc.nextLine();
-        for (int i = 0; i < jmlMenu; i++) {
-            if (daftarMenu[i].equalsIgnoreCase(inputMenu)) {
-                index = i;
-                break;
+            System.out.print("Masukkan menu : ");
+            inputMenu = sc.nextLine();
+            for (int i = 0; i < jmlMenu; i++) {
+                if (daftarMenu[i].equalsIgnoreCase(inputMenu)) {
+                    index = i;
+                    break;
+                }
             }
+            if (index == -1) {
+                System.out.println("Menu tidak ditemukan");
             }
-        if (index == -1 ) {
-            System.out.println("Menu tidak ditemukan");
-        }
-    } while (index == -1);
-    
-            System.out.println("Harga: " + hargaMenu[index]);
-    
-            System.out.print("Masukkan jumlah menu yang akan ditambahkan ke stok: ");
-            int jmlTambahStok = sc.nextInt();
-            stokMenu[index] += jmlTambahStok;
-    
-            System.out.println("---------------------------------------------------------------------------------");
-            System.out.println("Stok menu " + daftarMenu[index] + " berhasil ditambahkan sebanyak " + jmlTambahStok + " porsi.");
-            System.out.println("---------------------------------------------------------------------------------");
+        } while (index == -1);
+
+        System.out.println("Harga: " + hargaMenu[index]);
+
+        System.out.print("Masukkan jumlah menu yang akan ditambahkan ke stok: ");
+        int jmlTambahStok = sc.nextInt();
+        stokMenu[index] += jmlTambahStok;
+
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println(
+                "Stok menu " + daftarMenu[index] + " berhasil ditambahkan sebanyak " + jmlTambahStok + " porsi.");
+        System.out.println("---------------------------------------------------------------------------------");
     }
 
-    private static void tambahMenu(Scanner sc){
+    private static void tambahMenu(Scanner sc) {
         boolean menuSudahAda;
         do {
             System.out.print("Masukkan menu baru: ");
@@ -384,7 +391,7 @@ public class projek {
                 if (daftarMenuBaru.equalsIgnoreCase(daftarMenu[i])) {
                     System.out.println(daftarMenuBaru + " sudah ada dalam daftar barang!");
                     menuSudahAda = true; // Jika menu sudah ada, ubah menjadi true
-                    break; // Keluar dari loop segera setelah ditemukan  menu yang sama
+                    break; // Keluar dari loop segera setelah ditemukan menu yang sama
                 }
             }
 
@@ -411,23 +418,52 @@ public class projek {
         } while (true); // Loop terus sampai kondisi di dalamnya dihentikan dengan break
     }
 
-    //Fungsi Laporan Pendapatan
-    private static void laporanPendapatan(){
+    // Fungsi Laporan Pendapatan
+    private static void laporanPendapatan() {
 
-            System.out.println("===============================================");
-            System.out.println("           LAPORAN PENDAPATAN RESTORAN          ");
-            System.out.println("===============================================");
-            System.out.println("Total Pendapatan: " + totalPendapatan);
-            System.out.println("===============================================");
-        
-       }
+        System.out.println("===============================================");
+        System.out.println("           LAPORAN PENDAPATAN RESTORAN          ");
+        System.out.println("===============================================");
+        System.out.println("Total Pendapatan: " + totalPendapatan);
+        System.out.println("===============================================");
 
-    //    fungsi untuk atur diskon
-       private static void aturDiskon(Scanner sc){
+    }
+
+    // fungsi untuk atur diskon
+    private static void aturDiskon(Scanner sc) {
         System.out.print("Masukkan nilai diskon yang diinginkan oleh admin: ");
         diskonAdmin = sc.nextInt();
         System.out.println("Diskon sebesar " + diskonAdmin + "% telah diatur oleh admin.");
         diskonKasar += diskonAdmin / 100;
-        }
-    
     }
+
+    private static void voucher(Scanner sc) {
+        System.out.print("Masukkan  kode voucher (kosongkan jika tiidak ada): ");
+        kodeVoucher = sc.nextLine();
+
+        if (!kodeVoucher.isEmpty()) {
+            double diskon = 0.0;
+
+            // Lakukan perhitungan berdasarkan kode voucher
+            if (kodeVoucher.equalsIgnoreCase("VOUCHER1")) {
+                diskon = 0.1; // 10% diskon
+            } else if (kodeVoucher.equalsIgnoreCase("VOUCHER2")) {
+                diskon = 0.2; // 20% diskon
+            } else if (kodeVoucher.equalsIgnoreCase("VOUCHER3")) {
+                diskon = 0.3; // 30% diskon
+            }
+
+            // totalHarga is used here directly
+            double hargaDiskon = totalHarga * diskon;
+            double hargaSetelahDiskon = totalHarga - hargaDiskon;
+
+            System.out.println("Voucher sebesar " + (diskon * 100) + "% telah diatur oleh admin.");
+            System.out.println("Total harga sebelum diskon: " + totalHarga);
+            System.out.println("Total harga setelah diskon: " + hargaSetelahDiskon);
+        } else {
+            // totalHarga is used here directly
+            System.out.println("Tidak ada kode voucher yang diatur oleh admin.");
+            System.out.println("Total harga: " + totalHarga);
+        }
+    }
+}
