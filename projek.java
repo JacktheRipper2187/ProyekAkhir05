@@ -3,10 +3,16 @@ import java.util.Scanner;
 public class projek {
     Scanner sc = new Scanner(System.in);
 
-    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu, kodeVoucher;
+    static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
     static int menuManager, pilihan, jmlMenu = 0, hargaMenuBaru, stokMenuBaru, totalBayar = 0, jumlahUangTunai,
             nomorMenu, jumlahPesanan, totalHarga;
     static double diskon = 0.0, diskonKasar = 0.0, diskonAdmin = 0.0;
+
+    static String[] kodeVoucher = new String[6];
+    static double[] diskonVoucher = new double[6];
+    static int jumlahVoucher = 1;
+    static int noVoucher;
+  
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
@@ -31,6 +37,9 @@ public class projek {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        kodeVoucher[0]=null;
+        diskonVoucher[0]=0;
 
         daftarMenu[jmlMenu] = "Nasi Goreng";
         stokMenu[jmlMenu] = 50;
@@ -110,7 +119,7 @@ public class projek {
         }
 
         if (isManager) {
-            int pilih;
+            
             do {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                 PILIH MENU MANAGER                 ||");
@@ -176,11 +185,12 @@ public class projek {
                         break;
                     case 8:
                         voucher(sc);
+                        break;
                     case 9:
                         System.out.println("Terima kasih");
                         break;
                 }
-            } while (pilihan != 8);
+            } while (pilihan != 9);
             sc.close();
         }
     }
@@ -219,6 +229,25 @@ public class projek {
             System.out.print("Masukkan jumlah pesanan: ");
             jumlahPesanan = sc.nextInt();
             sc.nextLine();
+            System.out.println("Apakah anda ingin memasukkan voucher? (Y/N)");
+            String pilih=sc.nextLine();
+            if (pilih.equalsIgnoreCase("y")) {
+                System.out.print("Masukkan kode voucher: ");
+                String voucherCode = sc.nextLine();
+                for (int i = 1; i < kodeVoucher.length; i++) {
+                    if (voucherCode.equalsIgnoreCase(kodeVoucher[i])) {
+                        System.out.println("Kode voucher valid!");
+                        System.out.println("Anda mendapatkan potongan tambahan sebesar "+(diskonVoucher[i]*100)+"%");
+                        noVoucher=i;
+                        break;
+                    }
+                }
+            }else{
+                System.out.println("Tidak menggunakan voucher.");
+                noVoucher=0;
+            }
+            
+            
             pesan = false;
 
         }
@@ -231,7 +260,7 @@ public class projek {
                     totalHarga = hargaMenu[index] * jumlahPesanan;
 
                     totalBayar += totalHarga;
-                    diskon = diskonKasar * totalHarga;
+                    diskon = (diskonKasar+diskonVoucher[noVoucher]) * totalHarga;
 
                     if (totalHarga > 0) {
                         namaBarangStruk[countBarangStruk] = daftarMenu[index];
@@ -252,7 +281,7 @@ public class projek {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Harga        : " + hargaMenu[index]);
                     System.out.println("Jumlah       : " + jumlahPesanan);
-                    System.out.println("Diskon       : " + (int) diskonAdmin + "%");
+                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -438,32 +467,42 @@ public class projek {
     }
 
     private static void voucher(Scanner sc) {
-        System.out.print("Masukkan  kode voucher (kosongkan jika tiidak ada): ");
-        kodeVoucher = sc.nextLine();
-
-        if (!kodeVoucher.isEmpty()) {
-            double diskon = 0.0;
-
-            // Lakukan perhitungan berdasarkan kode voucher
-            if (kodeVoucher.equalsIgnoreCase("VOUCHER1")) {
-                diskon = 0.1; // 10% diskon
-            } else if (kodeVoucher.equalsIgnoreCase("VOUCHER2")) {
-                diskon = 0.2; // 20% diskon
-            } else if (kodeVoucher.equalsIgnoreCase("VOUCHER3")) {
-                diskon = 0.3; // 30% diskon
+        System.out.println("Apakah anda ingin memasukkan membuat voucher? (Y/N)");
+        String pilihan=sc.next();
+        if (pilihan.equalsIgnoreCase("Y")) {      
+            if (jumlahVoucher < kodeVoucher.length) {
+                System.out.print("Masukkan kode voucher: ");
+                String kodeInput = sc.next();
+                sc.nextLine();
+        
+                // Memeriksa apakah kode voucher sudah ada sebelumnya
+                boolean kodeSudahAda = false;
+                for (int i = 0; i < jumlahVoucher; i++) {
+                    if (kodeInput.equalsIgnoreCase(kodeVoucher[i])) {
+                        kodeSudahAda = true;
+                        break;
+                    }
+                }
+        
+                if (kodeSudahAda) {
+                    System.out.println("Kode voucher sudah ada.");
+                } else {
+                    System.out.print("Masukkan besaran diskon untuk voucher " + kodeInput + ": ");
+                    double diskonInput = sc.nextDouble();
+                    sc.nextLine();
+        
+                    if (jumlahVoucher < kodeVoucher.length) {
+                        kodeVoucher[jumlahVoucher] = kodeInput;
+                        diskonVoucher[jumlahVoucher] = (diskonInput/100);
+                        jumlahVoucher++;
+                    }
+                    System.out.println("Voucher " + kodeInput + " dengan diskon " + diskonInput + "% berhasil ditambahkan.");
+                }
+            } else {
+                System.out.println("Kapasitas voucher penuh.");
             }
+        }else{
 
-            // totalHarga is used here directly
-            double hargaDiskon = totalHarga * diskon;
-            double hargaSetelahDiskon = totalHarga - hargaDiskon;
-
-            System.out.println("Voucher sebesar " + (diskon * 100) + "% telah diatur oleh admin.");
-            System.out.println("Total harga sebelum diskon: " + totalHarga);
-            System.out.println("Total harga setelah diskon: " + hargaSetelahDiskon);
-        } else {
-            // totalHarga is used here directly
-            System.out.println("Tidak ada kode voucher yang diatur oleh admin.");
-            System.out.println("Total harga: " + totalHarga);
         }
-    }
+        }    
 }
