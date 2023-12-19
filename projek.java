@@ -8,8 +8,8 @@ public class projek {
             nomorMenu, jumlahPesanan, totalHarga;
     static double diskon = 0.0, diskonKasar = 0.0, diskonAdmin = 0.0;
 
-    static String[] kodeVoucher = new String[6];
-    static double[] diskonVoucher = new double[6];
+    static String[] kodeVoucher = new String[20];
+    static double[] diskonVoucher = new double[20];
     static int jumlahVoucher = 1;
     static int noVoucher;
   
@@ -31,9 +31,6 @@ public class projek {
 
     static int totalPendapatan = 0;
     static String[] tanggalTransaksi = new String[100]; // Array untuk tanggal transaksi
-
-    // static String kodeVoucher[] = {"VOUCHER1", "VOUCHER2", "VOUCHER3"};
-    // static int nilaiVoucher = 5000;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -245,14 +242,10 @@ public class projek {
             }else{
                 System.out.println("Tidak menggunakan voucher.");
                 noVoucher=0;
-            }
-            
-            
+            }   
             pesan = false;
-
         }
         if (!pesan) {
-
             // Menghitung total harga
             int index = nomorMenu - 1;
             if (index >= 0 && index < jmlMenu && jumlahPesanan > 0) {
@@ -266,8 +259,7 @@ public class projek {
                         namaBarangStruk[countBarangStruk] = daftarMenu[index];
                         hargaBarangStruk[countBarangStruk] = hargaMenu[index];
                         jumlahBarangStruk[countBarangStruk] = jumlahPesanan;
-                        totalHargaBarangStruk[countBarangStruk] = totalHarga;
-                        countBarangStruk++;
+                        totalHargaBarangStruk[countBarangStruk] = totalHarga;                        
                     }
 
                     // Update stok
@@ -342,9 +334,8 @@ public class projek {
     // Fungsi Cetak Struk
     private static void cetakStruk(String masukkanUsername) {
         int totalHarga = 0;
-        for (int i = 0; i < countBarangStruk; i++) {
-            totalHarga += totalHargaBarangStruk[i];
-        }
+       
+            totalHarga += totalHargaBarangStruk[countBarangStruk];
 
         System.out.println("||===================================================||");
         System.out.println("||                 KING RESTAURANT                   ||");
@@ -356,12 +347,10 @@ public class projek {
         System.out.println("  Tanggal transaksi : " + java.time.LocalDate.now());
         System.out.println("  Nama Barang : ");
 
-        for (int i = 0; i < countBarangStruk; i++) {
-            System.out.print("  " + namaBarangStruk[i]);
-            System.out.print(" " + hargaBarangStruk[i]);
-            System.out.print(" X " + jumlahBarangStruk[i]);
-            System.out.println(" total: " + totalHargaBarangStruk[i]);
-        }
+        System.out.print("  " + namaBarangStruk[countBarangStruk]);
+        System.out.print(" " + hargaBarangStruk[countBarangStruk]);
+        System.out.print(" X " + jumlahBarangStruk[countBarangStruk]);
+        System.out.println(" total: " + totalHargaBarangStruk[countBarangStruk]);
 
         System.out.println("-------------------------------------------------------");
         System.out.println("  Total Belanja                     Rp:" + totalHarga);
@@ -378,6 +367,7 @@ public class projek {
         System.out.println("            TERIMAKASIH ATAS KUNJUNGANNYA              ");
         System.out.println("                  SELAMAT MENIKMATI                    ");
         System.out.println("=======================================================");
+        countBarangStruk++;
     }
 
     static void tambahStok(Scanner sc) {
@@ -504,5 +494,6 @@ public class projek {
         }else{
 
         }
-        }    
+        }
+    
 }
