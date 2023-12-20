@@ -15,7 +15,7 @@ public class fiturbaru {
 
     static int[] totalPendapatanBulanan = new int[12];
     static int[] totalPendapatanHarian = new int[31];
-    static int countTransaksiHarian = 0;
+    static int countTransaksiHarian = 1;
     static int countTransaksiBulanan = 0;
   
 
@@ -231,6 +231,13 @@ public class fiturbaru {
             System.out.print("Masukkan jumlah pesanan: ");
             jumlahPesanan = sc.nextInt();
             sc.nextLine();
+            double subtotal = jumlahPesanan * hargaMenu[nomorMenu];
+            double total = subtotal - (subtotal * diskonKasar);
+            totalPendapatanHarian[countTransaksiHarian - 1] += total;
+            totalPendapatanBulanan[countTransaksiBulanan - 1] += total;
+            countTransaksiHarian ++;
+            totalPendapatan += total;
+
             System.out.println("Apakah anda ingin memasukkan voucher? (Y/N)");
             String pilih=sc.nextLine();
             if (pilih.equalsIgnoreCase("y")) {
@@ -448,29 +455,29 @@ public class fiturbaru {
     }
 
     // Fungsi Laporan Pendapatan
-   private static void laporanPendapatan() {
-    System.out.println("===============================================");
-    System.out.println("         LAPORAN PENDAPATAN RESTORAN           ");
-    System.out.println("===============================================");
-
-    // Display monthly report
-    System.out.println("LAPORAN PENDAPATAN BULANAN:");
-    for (int i = 0; i < totalPendapatanBulanan.length; i++) {
-        System.out.println("Bulan " + (i + 1) + ": " + totalPendapatanBulanan[i]);
+    private static void laporanPendapatan() {
+        System.out.println("===============================================");
+        System.out.println("         LAPORAN PENDAPATAN RESTORAN           ");
+        System.out.println("===============================================");
+    
+        // Display monthly report
+        System.out.println("LAPORAN PENDAPATAN BULANAN:");
+        for (int i = 0; i < totalPendapatanBulanan.length; i++) {
+            System.out.println("Bulan " + (i + 1) + ": " + totalPendapatanBulanan[i]);
+        }
+        System.out.println("-----------------------------------------------");
+    
+        // Display daily report
+        System.out.println("LAPORAN PENDAPATAN HARIAN:");
+        for (int i = 0; i < countTransaksiHarian; i++) {
+            System.out.println("Hari " + (i + 1) + ": " + totalPendapatanHarian[i]);
+        }
+        System.out.println("-----------------------------------------------");
+    
+        // Display overall report
+        System.out.println("Total Pendapatan Keseluruhan: " + totalPendapatan);
+        System.out.println("===============================================");
     }
-    System.out.println("-----------------------------------------------");
-
-    // Display daily report
-    System.out.println("LAPORAN PENDAPATAN HARIAN:");
-    for (int i = 0; i < countTransaksiHarian; i++) {
-        System.out.println("Hari " + (i + 1) + ": " + totalPendapatanHarian[i]);
-    }
-    System.out.println("-----------------------------------------------");
-
-    // Display overall report
-    System.out.println("Total Pendapatan Keseluruhan: " + totalPendapatan);
-    System.out.println("===============================================");
-}
 
 
     // fungsi untuk atur diskon

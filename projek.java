@@ -29,6 +29,8 @@ public class projek {
     static int[] totalHargaBarangStruk = new int[100];
     static int countBarangStruk = 0;
 
+    static int pendapatanHarian = 0;
+    static int pendapatanBulanan = 0;
     static int totalPendapatan = 0;
     static String[] tanggalTransaksi = new String[100]; // Array untuk tanggal transaksi
 
@@ -264,6 +266,8 @@ public class projek {
 
                     // Update stok
                     stokMenu[index] -= jumlahPesanan;
+                    pendapatanHarian += totalHarga - (int) diskon;
+                    pendapatanBulanan += totalHarga - (int) diskon;
 
                     // Menampilkan rincian pesanan
 
@@ -443,7 +447,9 @@ public class projek {
         System.out.println("===============================================");
         System.out.println("           LAPORAN PENDAPATAN RESTORAN          ");
         System.out.println("===============================================");
-        System.out.println("Total Pendapatan: " + totalPendapatan);
+        System.out.println(" Pendapatan Harian: " + pendapatanHarian);
+        System.out.println(" Pendapatan Bulanan: " + pendapatanBulanan);
+        System.out.println(" Total Pendapatan: " + (pendapatanBulanan + pendapatanHarian));
         System.out.println("===============================================");
 
     }
