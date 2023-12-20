@@ -156,7 +156,7 @@ public class projek {
                 System.out.println("||                  8. Voucher                        ||");
                 System.out.println("||                  9. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9) : ");
                 pilihan = sc.nextInt();
                 sc.nextLine();
 
