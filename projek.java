@@ -415,7 +415,7 @@ public class projek {
             }
 
             if (!menuSudahAda) {
-                System.out.print("Masukkan menu baru: ");
+                System.out.print("Masukkan harga menu: ");
                 hargaMenuBaru = sc.nextInt();
                 System.out.print("Masukkan jumlah stok : ");
                 stokMenuBaru = sc.nextInt();
