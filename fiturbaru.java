@@ -13,12 +13,6 @@ public class fiturbaru {
     static int jumlahVoucher = 1;
     static int noVoucher;
 
-    static int[] totalPendapatanBulanan = new int[12];
-    static int[] totalPendapatanHarian = new int[31];
-    static int countTransaksiHarian = 1;
-    static int countTransaksiBulanan = 0;
-  
-
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
     static boolean berhasilLogin = false;
@@ -34,17 +28,19 @@ public class fiturbaru {
     static int[] totalHargaBarangStruk = new int[100];
     static int countBarangStruk = 0;
 
+    static int pendapatanHarian = 0;
+    static int pendapatanBulanan = 0;
     static int totalPendapatan = 0;
     static String[] tanggalTransaksi = new String[100]; // Array untuk tanggal transaksi
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        kodeVoucher[0]=null;
-        diskonVoucher[0]=0;
+        kodeVoucher[0] = null;
+        diskonVoucher[0] = 0;
 
         daftarMenu[jmlMenu] = "Nasi Goreng";
-        stokMenu[jmlMenu] = 50;
+        stokMenu[jmlMenu] = 60;
         hargaMenu[jmlMenu] = 17000;
         jmlMenu++;
         daftarMenu[jmlMenu] = "Nasi Bakar";
@@ -121,7 +117,7 @@ public class fiturbaru {
         }
 
         if (isManager) {
-            
+
             do {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                 PILIH MENU MANAGER                 ||");
@@ -159,7 +155,7 @@ public class fiturbaru {
                 System.out.println("||                  8. Voucher                        ||");
                 System.out.println("||                  9. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9) : ");
                 pilihan = sc.nextInt();
                 sc.nextLine();
 
@@ -192,6 +188,13 @@ public class fiturbaru {
                         System.out.println("Terima kasih");
                         break;
                 }
+
+                // pilihan keluar dari mode pengguna biasa
+                if (pilihan == 9) {
+                    System.out.println(
+                            "Anda telah keluar dari mode pengguna. silahkan login sebagai manager untuk akses lebih lanjut.");
+                    loginManager(sc);
+                }
             } while (pilihan != 9);
             sc.close();
         }
@@ -210,6 +213,29 @@ public class fiturbaru {
         }
         System.out.println("-------------------------------------------------");
 
+    }
+
+    // login sebagai manager
+    private static void loginManager(Scanner sc) {
+        String managerUsername = "Manager";
+        String managerPassword = "Manager123";
+
+        System.out.println("===========================================");
+        System.out.println("               LOGIN MANAGER                ");
+        System.out.println("===========================================");
+        System.out.print("Masukkan username manager: ");
+        String inputUsername = sc.nextLine();
+        System.out.print("Masukkan password manager: ");
+        String inputPassword = sc.nextLine();
+
+        if (inputUsername.equalsIgnoreCase(managerUsername) && inputPassword.equals(managerPassword)) {
+            System.out.println("============================");
+            System.out.println("| SELAMAT DATANG MANAGER   |");
+            System.out.println("============================");
+            isManager = true;
+        } else {
+            System.out.println("Login gagal. Username atau password manager tidak valid.");
+        }
     }
 
     static void transaksi(Scanner sc) {
@@ -231,30 +257,24 @@ public class fiturbaru {
             System.out.print("Masukkan jumlah pesanan: ");
             jumlahPesanan = sc.nextInt();
             sc.nextLine();
-            double subtotal = jumlahPesanan * hargaMenu[nomorMenu];
-            double total = subtotal - (subtotal * diskonKasar);
-            totalPendapatanHarian[countTransaksiHarian - 1] += total;
-            totalPendapatanBulanan[countTransaksiBulanan - 1] += total;
-            countTransaksiHarian ++;
-            totalPendapatan += total;
-
             System.out.println("Apakah anda ingin memasukkan voucher? (Y/N)");
-            String pilih=sc.nextLine();
+            String pilih = sc.nextLine();
             if (pilih.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan kode voucher: ");
                 String voucherCode = sc.nextLine();
                 for (int i = 1; i < kodeVoucher.length; i++) {
                     if (voucherCode.equalsIgnoreCase(kodeVoucher[i])) {
                         System.out.println("Kode voucher valid!");
-                        System.out.println("Anda mendapatkan potongan tambahan sebesar "+(diskonVoucher[i]*100)+"%");
-                        noVoucher=i;
+                        System.out.println(
+                                "Anda mendapatkan potongan tambahan sebesar " + (diskonVoucher[i] * 100) + "%");
+                        noVoucher = i;
                         break;
                     }
                 }
-            }else{
+            } else {
                 System.out.println("Tidak menggunakan voucher.");
-                noVoucher=0;
-            }   
+                noVoucher = 0;
+            }
             pesan = false;
         }
         if (!pesan) {
@@ -265,17 +285,19 @@ public class fiturbaru {
                     totalHarga = hargaMenu[index] * jumlahPesanan;
 
                     totalBayar += totalHarga;
-                    diskon = (diskonKasar+diskonVoucher[noVoucher]) * totalHarga;
+                    diskon = (diskonKasar + diskonVoucher[noVoucher]) * totalHarga;
 
                     if (totalHarga > 0) {
                         namaBarangStruk[countBarangStruk] = daftarMenu[index];
                         hargaBarangStruk[countBarangStruk] = hargaMenu[index];
                         jumlahBarangStruk[countBarangStruk] = jumlahPesanan;
-                        totalHargaBarangStruk[countBarangStruk] = totalHarga;                        
+                        totalHargaBarangStruk[countBarangStruk] = totalHarga;
                     }
 
                     // Update stok
                     stokMenu[index] -= jumlahPesanan;
+                    pendapatanHarian += totalHarga - (int) diskon;
+                    pendapatanBulanan += totalHarga - (int) diskon;
 
                     // Menampilkan rincian pesanan
 
@@ -285,7 +307,8 @@ public class fiturbaru {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Harga        : " + hargaMenu[index]);
                     System.out.println("Jumlah       : " + jumlahPesanan);
-                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
+                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "
+                            + (int) (diskonVoucher[noVoucher] * 100) + "%");
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -346,13 +369,8 @@ public class fiturbaru {
     // Fungsi Cetak Struk
     private static void cetakStruk(String masukkanUsername) {
         int totalHarga = 0;
-       
-            totalHarga += totalHargaBarangStruk[countBarangStruk];
-            for (int i = 0; i < countBarangStruk; i++) {
-                totalHarga += totalHargaBarangStruk[i];
-            }
-        
-        
+
+        totalHarga += totalHargaBarangStruk[countBarangStruk];
 
         System.out.println("||===================================================||");
         System.out.println("||                 KING RESTAURANT                   ||");
@@ -432,7 +450,7 @@ public class fiturbaru {
             }
 
             if (!menuSudahAda) {
-                System.out.print("Masukkan menu baru: ");
+                System.out.print("Masukkan harga menu: ");
                 hargaMenuBaru = sc.nextInt();
                 System.out.print("Masukkan jumlah stok : ");
                 stokMenuBaru = sc.nextInt();
@@ -456,29 +474,16 @@ public class fiturbaru {
 
     // Fungsi Laporan Pendapatan
     private static void laporanPendapatan() {
-        System.out.println("===============================================");
-        System.out.println("         LAPORAN PENDAPATAN RESTORAN           ");
-        System.out.println("===============================================");
-    
-        // Display monthly report
-        System.out.println("LAPORAN PENDAPATAN BULANAN:");
-        for (int i = 0; i < totalPendapatanBulanan.length; i++) {
-            System.out.println("Bulan " + (i + 1) + ": " + totalPendapatanBulanan[i]);
-        }
-        System.out.println("-----------------------------------------------");
-    
-        // Display daily report
-        System.out.println("LAPORAN PENDAPATAN HARIAN:");
-        for (int i = 0; i < countTransaksiHarian; i++) {
-            System.out.println("Hari " + (i + 1) + ": " + totalPendapatanHarian[i]);
-        }
-        System.out.println("-----------------------------------------------");
-    
-        // Display overall report
-        System.out.println("Total Pendapatan Keseluruhan: " + totalPendapatan);
-        System.out.println("===============================================");
-    }
 
+        System.out.println("===============================================");
+        System.out.println("           LAPORAN PENDAPATAN RESTORAN          ");
+        System.out.println("===============================================");
+        System.out.println(" Pendapatan Harian: " + pendapatanHarian);
+        System.out.println(" Pendapatan Bulanan: " + pendapatanBulanan);
+        System.out.println(" Total Pendapatan: " + (pendapatanBulanan + pendapatanHarian));
+        System.out.println("===============================================");
+
+    }
 
     // fungsi untuk atur diskon
     private static void aturDiskon(Scanner sc) {
@@ -490,13 +495,13 @@ public class fiturbaru {
 
     private static void voucher(Scanner sc) {
         System.out.println("Apakah anda ingin memasukkan membuat voucher? (Y/N)");
-        String pilihan=sc.next();
-        if (pilihan.equalsIgnoreCase("Y")) {      
+        String pilihan = sc.next();
+        if (pilihan.equalsIgnoreCase("Y")) {
             if (jumlahVoucher < kodeVoucher.length) {
                 System.out.print("Masukkan kode voucher: ");
                 String kodeInput = sc.next();
                 sc.nextLine();
-        
+
                 // Memeriksa apakah kode voucher sudah ada sebelumnya
                 boolean kodeSudahAda = false;
                 for (int i = 0; i < jumlahVoucher; i++) {
@@ -505,28 +510,28 @@ public class fiturbaru {
                         break;
                     }
                 }
-        
+
                 if (kodeSudahAda) {
                     System.out.println("Kode voucher sudah ada.");
                 } else {
                     System.out.print("Masukkan besaran diskon untuk voucher " + kodeInput + ": ");
                     double diskonInput = sc.nextDouble();
                     sc.nextLine();
-        
+
                     if (jumlahVoucher < kodeVoucher.length) {
                         kodeVoucher[jumlahVoucher] = kodeInput;
-                        diskonVoucher[jumlahVoucher] = (diskonInput/100);
+                        diskonVoucher[jumlahVoucher] = (diskonInput / 100);
                         jumlahVoucher++;
                     }
-                    System.out.println("Voucher " + kodeInput + " dengan diskon " + diskonInput + "% berhasil ditambahkan.");
+                    System.out.println(
+                            "Voucher " + kodeInput + " dengan diskon " + diskonInput + "% berhasil ditambahkan.");
                 }
             } else {
                 System.out.println("Kapasitas voucher penuh.");
             }
-        }else{
+        } else {
 
         }
-    
     }
-    
+
 }
