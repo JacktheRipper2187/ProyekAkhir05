@@ -39,7 +39,7 @@ public class projek {
         diskonVoucher[0]=0;
 
         daftarMenu[jmlMenu] = "Nasi Goreng";
-        stokMenu[jmlMenu] = 50;
+        stokMenu[jmlMenu] = 60;
         hargaMenu[jmlMenu] = 17000;
         jmlMenu++;
         daftarMenu[jmlMenu] = "Nasi Bakar";
@@ -415,7 +415,7 @@ public class projek {
             }
 
             if (!menuSudahAda) {
-                System.out.print("Masukkan menu baru: ");
+                System.out.print("Masukkan harga menu: ");
                 hargaMenuBaru = sc.nextInt();
                 System.out.print("Masukkan jumlah stok : ");
                 stokMenuBaru = sc.nextInt();
