@@ -450,7 +450,7 @@ public class projek {
 
     // fungsi untuk atur diskon
     private static void aturDiskon(Scanner sc) {
-        System.out.print("Masukkan nilai diskon yang diinginkan oleh admin: ");=
+        System.out.print("Masukkan nilai diskon yang diinginkan oleh admin: ");
         diskonAdmin = sc.nextInt();
         System.out.println("Diskon sebesar " + diskonAdmin + "% telah diatur oleh admin.");
         diskonKasar += diskonAdmin / 100;
