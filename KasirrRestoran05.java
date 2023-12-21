@@ -507,7 +507,7 @@ public class KasirrRestoran05 {
                     sc.nextLine();
 
                          // Proses pembayaran
-                    if {
+                 
                         if (language.equals("English")) {
                            System.out.print("Enter the cash amount: ");
                         } else if (language.equals("Indonesian")) {
@@ -574,7 +574,7 @@ public class KasirrRestoran05 {
             }
                    
         }
-    }
+    
 
     // Fungsi Cetak Struk
     private static void cetakStruk(String masukkanUsername) {
