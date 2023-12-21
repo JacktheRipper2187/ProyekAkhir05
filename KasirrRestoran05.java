@@ -504,7 +504,7 @@ public class KasirrRestoran05 {
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
                     }
-                    sc.nextLine();
+          
 
                          // Proses pembayaran
                  
