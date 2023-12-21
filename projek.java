@@ -149,7 +149,7 @@ public class projek {
         hargaMenu[jmlMenu] = 10000;
         jmlMenu++;
         }
-        
+    }
 
         // Login
         while (!berhasilLogin) {
@@ -350,7 +350,6 @@ public class projek {
             } while (pilihan != 10);
             sc.close();
         }
-    }
     }
 
     private static void menu() {
