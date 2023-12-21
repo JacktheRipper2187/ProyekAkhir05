@@ -492,11 +492,6 @@ public class KasirrRestoran05 {
                     System.out.println("Total Price  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
-                    // Pilihan pembayaran
-                    System.out.println("\nPAYMENT OPTIONS:");
-                    System.out.println("1. Cash");
-                    System.out.println("2. Bank Transfer");
-                    System.out.print("Select a payment method (1/2): ");
                     } else if (language.equals("Indonesian")) {
 
                     System.out.println("\n=========================================");
@@ -508,19 +503,11 @@ public class KasirrRestoran05 {
                     System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
-
-                    // Pilihan pembayaran
-                    System.out.println("\nPILIHAN PEMBAYARAN:");
-                    System.out.println("1. Tunai");
-                    System.out.println("2. Transfer bank");
-                    System.out.print("Pilih metode pembayaran (1/2): ");
                     }
-
-                    int metodePembayaran = sc.nextInt();
                     sc.nextLine();
 
                          // Proses pembayaran
-                    if (metodePembayaran == 1) {
+                    if {
                         if (language.equals("English")) {
                            System.out.print("Enter the cash amount: ");
                         } else if (language.equals("Indonesian")) {
@@ -566,38 +553,9 @@ public class KasirrRestoran05 {
                             transaksi(sc);
 
                         }
-                    } else if (metodePembayaran == 2) {
-                        if (language.equals("English")) {
-                        System.out.println("========================================================");
-                        System.out.println("||                    Bank Transfer                   ||");
-                        System.out.println("========================================================");
-                        System.out.println("|| 2341760042----------Karina Ika                     ||");
-                        System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
-                        System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
-                        System.out.println("========================================================");
-                        totalBayar = (totalHarga - (int) diskon);
-                        System.out.println("Total payable: Rp " + totalBayar);
-
-                        } else if (language.equals("Indonesian")) {
-                        System.out.println("========================================================");
-                        System.out.println("||                    Transfer bank                   ||");
-                        System.out.println("========================================================");
-                        System.out.println("|| 2341760042----------Karina Ika                     ||");
-                        System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
-                        System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
-                        System.out.println("========================================================");
-                        totalBayar = (totalHarga - (int) diskon);
-                        System.out.println("Total yang harus dibayar: Rp " + totalBayar);
-                        }
                   
-                    } else {
-                        if (language.equals("English")) {
-                           System.out.println("Invalid payment option.");
-                        } else if (language.equals("Indonesian")) {
-                            System.out.println("Pilihan pembayaran tidak valid.");
-                        }
+                    } 
                     
-                    }
                 } else {
                     if (language.equals("English")) {
                       System.out.println("Sorry, there is insufficient stock for this order.");
@@ -614,11 +572,9 @@ public class KasirrRestoran05 {
                 }
                 
             }
-         }
-
                    
         }
-    
+    }
 
     // Fungsi Cetak Struk
     private static void cetakStruk(String masukkanUsername) {
