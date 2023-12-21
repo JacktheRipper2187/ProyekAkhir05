@@ -16,7 +16,7 @@ public class projek {
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
-    static boolean berhasilLogin = false;
+    static boolean berhasilLogin = false, logout = true;
     static boolean isManager = false, pesan = true;
 
     static String daftarMenu[] = new String[100];
@@ -64,6 +64,7 @@ public class projek {
         kodeVoucher[0]=null;
         diskonVoucher[0]=0;
 
+        if (logout) {
         if (language.equals("English")) {
         daftarMenu[jmlMenu] = "Fried Rice";
         stokMenu[jmlMenu] = 60;
@@ -148,7 +149,7 @@ public class projek {
         hargaMenu[jmlMenu] = 10000;
         jmlMenu++;
         }
-       
+        
 
         // Login
         while (!berhasilLogin) {
@@ -230,18 +231,20 @@ public class projek {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                  1. Menu & Stock List              ||");
                 System.out.println("||                  2. Revenue reports                ||");
-                System.out.println("||                  3. Exit                           ||");
+                System.out.println("||                  3. Log Out                           ||");
+                System.out.println("||                  4. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Enter your preferred menu (1/2/3) : ");
+                System.out.print("Enter your preferred menu (1/2/3/4) : ");
                 } else if (language.equals("Indonesian")) {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                 PILIH MENU MANAGER                 ||");
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                  1. Daftar Menu & Stok             ||");
                 System.out.println("||                  2. Laporan Pendapatan             ||");
-                System.out.println("||                  3. Exit                           ||");
+                System.out.println("||                  3. Log Out                        ||");
+                System.out.println("||                  4. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4) : ");
                     
                 }
             
@@ -253,7 +256,11 @@ public class projek {
                         break;
                     case 2:
                         laporanPendapatan();
+                        break;
                     case 3:
+                        logOut(sc);
+                        break;
+                    case 4:
                     if (language.equals("English")) {
                         System.out.println("Thank You");
                     } else if (language.equals("Indonesian")) {
@@ -261,7 +268,7 @@ public class projek {
                     }
                     break;
                 }              
-            } while (menuManager != 3);
+            } while (menuManager != 4);
             sc.close();
             
         } else {
@@ -278,9 +285,10 @@ public class projek {
                 System.out.println("||                  6. Income Report                  ||");
                 System.out.println("||                  7. Discount                       ||");
                 System.out.println("||                  8. Voucher                        ||");
-                System.out.println("||                  9. Exit                           ||");
+                System.out.println("||                  9. Log Out                        ||");
+                System.out.println("||                  10. Exit                          ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Enter your preferred menu (1/2/3/4/5/6/7/8/9) : ");
+                System.out.print("Enter your preferred menu (1/2/3/4/5/6/7/8/9/10) : ");
 
                 } else if (language.equals("Indonesian")) {
                 System.out.println("--------------------------------------------------------");
@@ -294,9 +302,10 @@ public class projek {
                 System.out.println("||                  6. Laporan Pendapatan             ||");
                 System.out.println("||                  7. Diskon                         ||");
                 System.out.println("||                  8. Voucher                        ||");
-                System.out.println("||                  9. Exit                           ||");
+                System.out.println("||                  9. LogOut                         ||");
+                System.out.println("||                  10. Exit                          ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9/10) : ");
                 }
 
                 pilihan = sc.nextInt();
@@ -328,17 +337,20 @@ public class projek {
                         voucher(sc);
                         break;
                     case 9:
+                        logOut(sc);
+                        break;
+                    case 10:
                      if (language.equals("English")) {
                              System.out.println("Thank you");
                           } else if (language.equals("Indonesian")) {
                              System.out.println("Terima kasih");
                         }
-                 
                         break;
                 }
-            } while (pilihan != 9);
+            } while (pilihan != 10);
             sc.close();
         }
+    }
     }
 
     private static void menu() {
@@ -916,6 +928,19 @@ public class projek {
         }else{
 
         }
+    }
+
+    public static void logOut(Scanner sc){
+        System.out.println("Apakah anda ingin log Out? (y/n)");
+
+        String pilih = sc.next();
+        if (pilih.equalsIgnoreCase("y")) {
+            logout = false;
+            berhasilLogin = false;
+            main(daftarMenu);
+        } else {
+            
         }
+    }
     
 }
