@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class fiturbaru {
+public class projek {
     Scanner sc = new Scanner(System.in);
 
     static String mskUsername, mskPassword, menuBaru, daftarMenuBaru, inputMenu;
@@ -11,12 +11,12 @@ public class fiturbaru {
     static String[] kodeVoucher = new String[20];
     static double[] diskonVoucher = new double[20];
     static int jumlahVoucher = 1;
-    static int noVoucher;
+    static int noVoucher,diskonMember=0;
   
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
     static String password[] = { "karina111", "kanaya111", "ulil111", "Manager123" };
-    static boolean berhasilLogin = false;
+    static boolean berhasilLogin = false, logout = true;
     static boolean isManager = false, pesan = true;
 
     static String daftarMenu[] = new String[100];
@@ -45,9 +45,9 @@ public class fiturbaru {
         System.out.println("||                                       ||");
         System.out.println("===========================================");
         System.out.println("\n");
-        System.out.println("***************");
+        System.out.println("*******************************************");
         System.out.println("*             LANGUAGE SELECTION           *");
-        System.out.println("***************");
+        System.out.println("*******************************************");
         System.out.println("1. English");
         System.out.println("2. Indonesian");
         System.out.print("Choose your language (1/2): ");
@@ -64,6 +64,7 @@ public class fiturbaru {
         kodeVoucher[0]=null;
         diskonVoucher[0]=0;
 
+        if (logout) {
         if (language.equals("English")) {
         daftarMenu[jmlMenu] = "Fried Rice";
         stokMenu[jmlMenu] = 60;
@@ -148,7 +149,7 @@ public class fiturbaru {
         hargaMenu[jmlMenu] = 10000;
         jmlMenu++;
         }
-       
+    }
 
         // Login
         while (!berhasilLogin) {
@@ -159,9 +160,9 @@ public class fiturbaru {
             System.out.println("||                                       ||");
             System.out.println("===========================================");
             System.out.println("\n");
-            System.out.println("***************");
+            System.out.println("*******************************************");
             System.out.println("*                  LOGIN                  *");
-            System.out.println("***************");
+            System.out.println("*******************************************");
             System.out.print("Enter username : ");
             mskUsername = sc.nextLine();
             System.out.print("Enter password : ");
@@ -174,9 +175,9 @@ public class fiturbaru {
             System.out.println("||                                       ||");
             System.out.println("===========================================");
             System.out.println("\n");
-            System.out.println("***************");
+            System.out.println("*******************************************");
             System.out.println("*                  LOGIN                  *");
-            System.out.println("***************");
+            System.out.println("*******************************************");
             System.out.print("Masukkan username : ");
             mskUsername = sc.nextLine();
             System.out.print("Masukkan password : ");
@@ -230,18 +231,20 @@ public class fiturbaru {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                  1. Menu & Stock List              ||");
                 System.out.println("||                  2. Revenue reports                ||");
-                System.out.println("||                  3. Exit                           ||");
+                System.out.println("||                  3. Log Out                           ||");
+                System.out.println("||                  4. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Enter your preferred menu (1/2/3) : ");
+                System.out.print("Enter your preferred menu (1/2/3/4) : ");
                 } else if (language.equals("Indonesian")) {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                 PILIH MENU MANAGER                 ||");
                 System.out.println("--------------------------------------------------------");
                 System.out.println("||                  1. Daftar Menu & Stok             ||");
                 System.out.println("||                  2. Laporan Pendapatan             ||");
-                System.out.println("||                  3. Exit                           ||");
+                System.out.println("||                  3. Log Out                        ||");
+                System.out.println("||                  4. Exit                           ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4) : ");
                     
                 }
             
@@ -253,7 +256,11 @@ public class fiturbaru {
                         break;
                     case 2:
                         laporanPendapatan();
+                        break;
                     case 3:
+                        logOut(sc);
+                        break;
+                    case 4:
                     if (language.equals("English")) {
                         System.out.println("Thank You");
                     } else if (language.equals("Indonesian")) {
@@ -261,7 +268,7 @@ public class fiturbaru {
                     }
                     break;
                 }              
-            } while (menuManager != 3);
+            } while (menuManager != 4);
             sc.close();
             
         } else {
@@ -278,9 +285,10 @@ public class fiturbaru {
                 System.out.println("||                  6. Income Report                  ||");
                 System.out.println("||                  7. Discount                       ||");
                 System.out.println("||                  8. Voucher                        ||");
-                System.out.println("||                  9. Exit                           ||");
+                System.out.println("||                  9. Log Out                        ||");
+                System.out.println("||                  10. Exit                          ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Enter your preferred menu (1/2/3/4/5/6/7/8/9) : ");
+                System.out.print("Enter your preferred menu (1/2/3/4/5/6/7/8/9/10) : ");
 
                 } else if (language.equals("Indonesian")) {
                 System.out.println("--------------------------------------------------------");
@@ -294,9 +302,10 @@ public class fiturbaru {
                 System.out.println("||                  6. Laporan Pendapatan             ||");
                 System.out.println("||                  7. Diskon                         ||");
                 System.out.println("||                  8. Voucher                        ||");
-                System.out.println("||                  9. Exit                           ||");
+                System.out.println("||                  9. LogOut                         ||");
+                System.out.println("||                  10. Exit                          ||");
                 System.out.println("--------------------------------------------------------");
-                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9) : ");
+                System.out.print("Masukkan menu pilihan Anda (1/2/3/4/5/6/7/8/9/10) : ");
                 }
 
                 pilihan = sc.nextInt();
@@ -328,15 +337,17 @@ public class fiturbaru {
                         voucher(sc);
                         break;
                     case 9:
+                        logOut(sc);
+                        break;
+                    case 10:
                      if (language.equals("English")) {
                              System.out.println("Thank you");
                           } else if (language.equals("Indonesian")) {
                              System.out.println("Terima kasih");
                         }
-                 
                         break;
                 }
-            } while (pilihan != 9);
+            } while (pilihan != 10);
             sc.close();
         }
     }
@@ -375,6 +386,16 @@ public class fiturbaru {
             System.out.println("=========================================");
             System.out.println("           MENU ORDERING               ");
             System.out.println("=========================================");
+            System.out.println("Are you membership? (Y/N)");
+            String member=sc.nextLine();
+            if (member.equalsIgnoreCase("y")) {
+                System.out.println("you get a 10% discount ");
+                diskonKasar=0.1;
+                diskonMember=10;
+            }else{
+                diskonKasar=0.0;
+                diskonMember=0;
+            }
 
             System.out.print("Enter Transaction Date (dd/mm/yyyy): ");
             String tanggal = sc.nextLine();
@@ -411,6 +432,16 @@ public class fiturbaru {
             System.out.println("=========================================");
             System.out.println("           PEMESANAN MENU               ");
             System.out.println("=========================================");
+            System.out.println("Apakah kamu membership? (Y/N)");
+            String member=sc.nextLine();
+            if (member.equalsIgnoreCase("y")) {
+                System.out.println("kamu mendapatkan diskon 10% ");
+                diskonKasar=0.1;
+                diskonMember=10;
+            }else{
+                diskonKasar=0.0;
+                diskonMember=0;
+            }
 
             System.out.print("Masukkan tanggal transaksi (dd/mm/yyyy): ");
             String tanggal = sc.nextLine();
@@ -477,7 +508,7 @@ public class fiturbaru {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Price        : " + hargaMenu[index]);
                     System.out.println("Quantity     : " + jumlahPesanan);
-                    System.out.println("Discount     : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
+                    System.out.println("Discount     : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"% + "+diskonMember+"%");
                     System.out.println("Total Price  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -494,7 +525,7 @@ public class fiturbaru {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Harga        : " + hargaMenu[index]);
                     System.out.println("Jumlah       : " + jumlahPesanan);
-                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
+                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"% + " +diskonMember+"%");
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -566,6 +597,16 @@ public class fiturbaru {
                         System.out.println("========================================================");
                         totalBayar = (totalHarga - (int) diskon);
                         System.out.println("Total payable: Rp " + totalBayar);
+                        System.out.println("press y to continue...");
+                        String lanjut=sc.nextLine();
+                        if (lanjut.equalsIgnoreCase("y")) {
+                            System.out.println("Payment success");
+                            jumlahUangTunai=totalBayar;
+                            pesan = true;
+                        }else{
+                            System.out.println("invalid transaction");
+                            return;
+                        }
 
                         } else if (language.equals("Indonesian")) {
                         System.out.println("========================================================");
@@ -577,6 +618,16 @@ public class fiturbaru {
                         System.out.println("========================================================");
                         totalBayar = (totalHarga - (int) diskon);
                         System.out.println("Total yang harus dibayar: Rp " + totalBayar);
+                        System.out.println("Tekan y untuk melanjutkan...");
+                        String lanjut=sc.nextLine();
+                        if (lanjut.equalsIgnoreCase("y")) {
+                            System.out.println("Pembayaran berhasil");
+                            jumlahUangTunai=totalBayar;
+                            pesan = true;
+                        }else{
+                            System.out.println("Transaksi dibatalkan");
+                            return;
+                        }
                         }
                   
                     } else {
@@ -916,6 +967,19 @@ public class fiturbaru {
         }else{
 
         }
-        }
-    
+    }
+
+    public static void logOut(Scanner sc){
+        System.out.println("Apakah anda ingin log Out? (y/n)");
+
+        String pilih = sc.next();
+        if (pilih.equalsIgnoreCase("y")) {
+            logout = false;
+            berhasilLogin = false;
+            main(daftarMenu);
+        } else {
+            
+        }
+    }
+    
 }
