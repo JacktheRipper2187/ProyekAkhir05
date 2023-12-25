@@ -150,6 +150,7 @@ public class KasirrRestoran05 {
         jmlMenu++;
         }
     }
+
         // Login
         while (!berhasilLogin) {
             if (language.equals("English")) {
@@ -385,12 +386,14 @@ public class KasirrRestoran05 {
             System.out.println("=========================================");
             System.out.println("           MENU ORDERING               ");
             System.out.println("=========================================");
-            System.out.println("are you member? (Y/N)");
+            System.out.println("Are you membership? (Y/N)");
             String member=sc.nextLine();
             if (member.equalsIgnoreCase("y")) {
-                System.out.println("get a 5% discount ");
-                diskonMember=5;
-            }else{                
+                System.out.println("you get a 10% discount ");
+                diskonKasar=0.1;
+                diskonMember=10;
+            }else{
+                diskonKasar=0.0;
                 diskonMember=0;
             }
 
@@ -432,9 +435,9 @@ public class KasirrRestoran05 {
             System.out.println("Apakah kamu membership? (Y/N)");
             String member=sc.nextLine();
             if (member.equalsIgnoreCase("y")) {
-                System.out.println("kamu mendapatkan diskon 5% ");
+                System.out.println("kamu mendapatkan diskon 10% ");
                 diskonKasar=0.1;
-                diskonMember=5;
+                diskonMember=10;
             }else{
                 diskonKasar=0.0;
                 diskonMember=0;
@@ -590,7 +593,7 @@ public class KasirrRestoran05 {
                         System.out.println("========================================================");
                         System.out.println("|| 2341760042----------Karina Ika                     ||");
                         System.out.println("|| 2341760118----------Kanaya Abdiela                 ||");
-                        System.out.println("|| 2341760194----------M. Ulil Fahmi                  ||");
+                        System.out.println("|| 2341760194----------Ulil Fahmi                     ||");
                         System.out.println("========================================================");
                         totalBayar = (totalHarga - (int) diskon);
                         System.out.println("Total payable: Rp " + totalBayar);
@@ -695,7 +698,7 @@ public class KasirrRestoran05 {
         System.out.println("=======================================================");
         countBarangStruk++;
 
-        } else if (language.equals("Indonesian")) {
+            } else if (language.equals("Indonesian")) {
         System.out.println("||===================================================||");
         System.out.println("||                 KING RESTAURANT                   ||");
         System.out.println("||                 Struk Pembayaran                  ||");
