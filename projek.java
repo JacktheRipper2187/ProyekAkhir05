@@ -11,7 +11,7 @@ public class projek {
     static String[] kodeVoucher = new String[20];
     static double[] diskonVoucher = new double[20];
     static int jumlahVoucher = 1;
-    static int noVoucher;
+    static int noVoucher,diskonMember=0;
   
 
     static String username[] = { "Karina", "Kanaya", "Ulil", "Manager" };
@@ -386,6 +386,16 @@ public class projek {
             System.out.println("=========================================");
             System.out.println("           MENU ORDERING               ");
             System.out.println("=========================================");
+            System.out.println("Are you membership? (Y/N)");
+            String member=sc.nextLine();
+            if (member.equalsIgnoreCase("y")) {
+                System.out.println("you get a 10% discount ");
+                diskonKasar=0.1;
+                diskonMember=10;
+            }else{
+                diskonKasar=0.0;
+                diskonMember=0;
+            }
 
             System.out.print("Enter Transaction Date (dd/mm/yyyy): ");
             String tanggal = sc.nextLine();
@@ -422,6 +432,16 @@ public class projek {
             System.out.println("=========================================");
             System.out.println("           PEMESANAN MENU               ");
             System.out.println("=========================================");
+            System.out.println("Apakah kamu membership? (Y/N)");
+            String member=sc.nextLine();
+            if (member.equalsIgnoreCase("y")) {
+                System.out.println("kamu mendapatkan diskon 10% ");
+                diskonKasar=0.1;
+                diskonMember=10;
+            }else{
+                diskonKasar=0.0;
+                diskonMember=0;
+            }
 
             System.out.print("Masukkan tanggal transaksi (dd/mm/yyyy): ");
             String tanggal = sc.nextLine();
@@ -488,7 +508,7 @@ public class projek {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Price        : " + hargaMenu[index]);
                     System.out.println("Quantity     : " + jumlahPesanan);
-                    System.out.println("Discount     : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
+                    System.out.println("Discount     : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"% + "+diskonMember+"%");
                     System.out.println("Total Price  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -505,7 +525,7 @@ public class projek {
                     System.out.println("Menu         : " + daftarMenu[index]);
                     System.out.println("Harga        : " + hargaMenu[index]);
                     System.out.println("Jumlah       : " + jumlahPesanan);
-                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"%");
+                    System.out.println("Diskon       : " + (int) diskonAdmin + "% + "+(int)(diskonVoucher[noVoucher]*100)+"% + " +diskonMember+"%");
                     System.out.println("Total Harga  : " + (totalHarga - (int) diskon));
                     System.out.println("=========================================");
 
@@ -577,6 +597,16 @@ public class projek {
                         System.out.println("========================================================");
                         totalBayar = (totalHarga - (int) diskon);
                         System.out.println("Total payable: Rp " + totalBayar);
+                        System.out.println("press y to continue...");
+                        String lanjut=sc.nextLine();
+                        if (lanjut.equalsIgnoreCase("y")) {
+                            System.out.println("Payment success");
+                            jumlahUangTunai=totalBayar;
+                            pesan = true;
+                        }else{
+                            System.out.println("invalid transaction");
+                            return;
+                        }
 
                         } else if (language.equals("Indonesian")) {
                         System.out.println("========================================================");
@@ -588,6 +618,16 @@ public class projek {
                         System.out.println("========================================================");
                         totalBayar = (totalHarga - (int) diskon);
                         System.out.println("Total yang harus dibayar: Rp " + totalBayar);
+                        System.out.println("Tekan y untuk melanjutkan...");
+                        String lanjut=sc.nextLine();
+                        if (lanjut.equalsIgnoreCase("y")) {
+                            System.out.println("Pembayaran berhasil");
+                            jumlahUangTunai=totalBayar;
+                            pesan = true;
+                        }else{
+                            System.out.println("Transaksi dibatalkan");
+                            return;
+                        }
                         }
                   
                     } else {

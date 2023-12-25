@@ -614,7 +614,7 @@ public class KasirrRestoran05 {
         System.out.println("=======================================================");
         countBarangStruk++;
 
-            } else if (language.equals("Indonesian")) {
+        } else if (language.equals("Indonesian")) {
         System.out.println("||===================================================||");
         System.out.println("||                 KING RESTAURANT                   ||");
         System.out.println("||                 Struk Pembayaran                  ||");
